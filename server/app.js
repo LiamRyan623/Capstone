@@ -1,3 +1,26 @@
+
+// ! MAKE COMMENTS
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const PORT = process.env.port
+const cors = require("cors");
+app.use(express.json());
+const mongoose = require("mongoose");
+
+const MONGO = process.env.MONGODB;
+
+mongoose.connect(`${MONGO}`);
+
+const db = mongoose.connection;
+db.once("open", () => console.log(`Connected: ${MONGO}`));
+
+
+//* Controller Variables 
+const users = require("./controllers/user.controller");
+
+app.listen(PORT, () => console.log(`React Server on Port: ${PORT}`));
+
 //TODO do base port and require statements
 require("dotenv").config();
 const express = require("express");
@@ -38,4 +61,4 @@ app.use(cors());
 /* app.use("/user", user);
 app.use("/room", room);
 app.use("/message", message); */
-app.listen(PORT, () => log(`Career Clash server on PORT: ${PORT}`));
+app.listen(PORT, () => log(`Career Clash server on PORT: ${PORT}`))
