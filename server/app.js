@@ -36,6 +36,6 @@ app.use(express.json());
 app.use(cors());
 
 /* app.use("/user", user);
-app.use("/room", room);
-app.use("/message", message); */
+
+app.use("/jobs", jobs); */
 app.listen(PORT, () => log(`Career Clash server on PORT: ${PORT}`));
