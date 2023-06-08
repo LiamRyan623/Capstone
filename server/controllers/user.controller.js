@@ -1,9 +1,10 @@
 // Bringing in installs & schema
 const router = require("express").Router();
 const User = require("../models/user.model.js");
-// const bcrypt = require("bcryptjs");
-// const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const SECRET = process.env.JWT;
+const validateSession = require("../middleware/validate-session")
 
 // Creating a user endpoint
 //* http://localhost:4000/user/signup
@@ -31,8 +32,9 @@ router.post("/signup", async (req, res) => {
             ERROR: err.message,
         });
     }
-});
+}); //! WORKS :)))
 
 // ? Login Endpoint
 
 
+module.exports = router;
