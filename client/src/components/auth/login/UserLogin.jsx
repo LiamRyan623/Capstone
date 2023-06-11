@@ -2,44 +2,44 @@ import { useRef } from "react";
 import { Form, FormGroup, Input, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 
-export default function UserLogin() {
+export default function UserLogin({ updateToken }) {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   //console.log(emailRef.current.value);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    //console.log(emailRef.current.value);
 
-  //   // Build the body object for server endpoint
-  //   let body = JSON.stringify({
-  //     email: emailRef.current.value,
-  //     password: passwordRef.current.value,
-  //   });
-  //   // Declare and init our url
-  //   const url = "http://localhost:4005/user/login";
+    // Build the body object for server endpoint
+    let body = JSON.stringify({
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    });
+    // Declare and init our url
+    const url = "http://localhost:4005/user/login";
 
-  //   try {
-  //     const res = await fetch(url, {
-  //       method: "POST",
-  //       headers: new Headers({
-  //         "Content-Type": "application/json",
-  //       }),
-  //       body: body,
-  //     });
-  //     const data = await res.json();
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+        body: body,
+      });
+      const data = await res.json();
 
-  //     if (data.message === "Login Successful!") {
-  //       updateToken(data.token);
-  //       navigate("/rooms");
-  //     } else {
-  //       alert(data.message);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+      if (data.message === "Login Successful!") {
+        updateToken(data.token);
+        navigate("/rooms");
+      } else {
+        alert(data.message);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>

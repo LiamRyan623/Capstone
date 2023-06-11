@@ -4,20 +4,20 @@ import UserSignup from "./signup/UserSignup";
 import { Nav, NavItem, NavLink, Col, Container } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 
-export default function Auth() {
+export default function Auth(props) {
   return (
     <>
       <Col md="6">
         <Nav justified pills tabs>
           <NavItem>
-            <NavLink onClick={{}}>Login</NavLink>
+            <NavLink>Login</NavLink>
           </NavItem>
           <NavItem>
             <NavLink active>Signup</NavLink>
           </NavItem>
         </Nav>
 
-        <UserSignup />
+        <UserSignup updateToken={props.updateToken} />
       </Col>
     </>
   );
