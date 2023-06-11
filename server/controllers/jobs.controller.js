@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Job = require("../models/jobs.model");
-const validateSession = require ("../middleware/validate-session");
+const validateSession = require("../middleware/validate-session-company");
 
 // http://localhost:4000/job/:id
 router.get("/:id", async (req, res) => {
@@ -18,16 +18,13 @@ router.get("/:id", async (req, res) => {
 });
 
 
-// http://localhost:4000/job/createjob/:id
-router.post("/createjob/:id", validateSession, async (req, res) => {
+// http://localhost:4000/job/createjob
+router.post("/createjob", async (req, res) => {
   try {
-    const body = req.body;
-    const {id} = req.params;
     const job = new Job({
-        userId: req.user._id,
-        when: new Date().getFullYear(),
-        user: req.user.firstName,
-        job: body.job,
+      company: req.body.company,
+      job: req.body.job,
+      description: req.body.description
     }); // using values from req.body to form our object.
 
     const newJob = await job.save(); // Writes to database. Returns a response - why it should be an "await".
@@ -41,7 +38,7 @@ router.post("/createjob/:id", validateSession, async (req, res) => {
       ERROR: err.message,
     });
   }
-});
+}); //! WORKS :))))
 
 //! Update a message within a room endpoint
 
@@ -73,7 +70,7 @@ router.patch("/:id", validateSession, async (req, res) => {
     } catch (err) {
       errorResponse(res, err);
     }
-  });
+  }); // ! WORKS :)))
 
 // Delete Message
 
@@ -93,6 +90,6 @@ router.patch("/:id", validateSession, async (req, res) => {
   } catch (err) {
       errorResponse(res, err);
   }
-});
+}); //! WORKS :))))
 
 module.exports = router;
