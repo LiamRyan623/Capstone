@@ -13,6 +13,7 @@ const app = express();
 
 //* Controller Variables 
 const user = require("./controllers/user.controller");
+const comp = require("./controllers/company.controller");
 
 
 
@@ -30,6 +31,7 @@ app.use(express.json());
 // Allowing the app to use cors
 app.use(cors());
 app.use("/user", user);
+app.use("/comp", comp);
 
 
 

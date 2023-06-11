@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Job = require("../models/jobs.model");
 const validateSession = require ("../middleware/validate-session");
 
+// http://localhost:4000/job/:id
 router.get("/:id", async (req, res) => {
   try {
       const jobs = await Job.find({room: req.params.id});
@@ -16,6 +17,8 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+
+// http://localhost:4000/job/createjob/:id
 router.post("/createjob/:id", validateSession, async (req, res) => {
   try {
     const body = req.body;
@@ -42,6 +45,7 @@ router.post("/createjob/:id", validateSession, async (req, res) => {
 
 //! Update a message within a room endpoint
 
+// http://localhost:4000/job/:id
 router.patch("/:id", validateSession, async (req, res) => {
     try {
       //1. Pull value from parameter
@@ -72,6 +76,8 @@ router.patch("/:id", validateSession, async (req, res) => {
   });
 
 // Delete Message
+
+// http://localhost:4000/job/:id
   router.delete('/:id', validateSession, async (req,res) => {
   try {
       //1. Capture ID

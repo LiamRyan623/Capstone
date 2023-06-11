@@ -4,7 +4,7 @@ const Comp = require("../models/company.model")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.JWT;
-const validateSession = require("../middleware/validate-session")
+const validateSession = require("../middleware/validate-session-company")
 
 // Creating a company signup endpoint
 //* http://localhost:4000/comp/signupComp
@@ -24,7 +24,7 @@ router.post("/signupComp", async (req, res) => {
         const token = jwt.sign({id: comp._id}, SECRET, {expiresIn: "1day"});
 
         res.status(200).json({
-            user: newComp,
+            company: newComp,
 
             message: 'Welcome to Career Clash!', token
         });
@@ -70,7 +70,7 @@ router.post("/loginComp", async (req, res) => {
 
 //? GET one user Endpoint
 //* http://localhost:4000/comp/compInfo
-router.get("/CompInfo", validateSession, async (req, res) => {
+router.get("/compInfo", validateSession, async (req, res) => {
     try {
         // Finding company
         const locateComp = await Comp.findOne({_id: req.comp._id});
@@ -84,14 +84,14 @@ router.get("/CompInfo", validateSession, async (req, res) => {
         })
 
         : res.status(404).json({
-            msg: "No comp found :("
+            msg: "No company found :("
         })
     } catch (err) {
         res.status(500).json({
             Error: err.message
         })
     }
-});
+}); // ! WORKS :)))
 
 //? Edit User Info Endpoint
 //* http://localhost:4000/comp/:id
@@ -100,21 +100,21 @@ router.patch("/:id", validateSession, async (req, res) => {
         // all the things inside the body that we want to change
         const { email, password, company } = req.body;
         // New info in the user
-        const newCompInfo = { email, password, firstName, lastName };
+        const newCompInfo = { email, password, company };
 
         const returnOption = {new: true};
 
         // Finding the user for the update
-        const updateUser = await Comp.findOneAndUpdate({_id: req.comp._id}, newCompInfo, returnOption);
+        const updateComp = await Comp.findOneAndUpdate({_id: req.comp._id}, newCompInfo, returnOption);
 
         // Sending a response to the user.
         updateComp ?
         res.status(200).json({
-            message: `Updated User!`,
-            updateUser,
+            message: `Updated Comp!`,
+            updateComp,
         })
         : res.status(404).json({
-            message: `User not found :(`
+            message: `Company not found :(`
         });
     } catch (err) {
         res.status(500).json({
@@ -129,7 +129,7 @@ router.patch("/:id", validateSession, async (req, res) => {
 router.delete('/delete', validateSession, async (req, res) => {
     try {
         // Pulling in the user we wanna delete.
-        const deleteComp = await Comp.deleteOne({_id: req.comp._id});
+        const deleteCompany = await Comp.deleteOne({_id: req.comp._id});
 
         // Sending a response to the user.
         deleteCompany.deletedCount === 1 ?
