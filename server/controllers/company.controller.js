@@ -1,31 +1,30 @@
 // Bringing in installs & schema
 const router = require("express").Router();
-const User = require("../models/user.model.js");
+const Comp = require("../models/company.model")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.JWT;
 const validateSession = require("../middleware/validate-session")
 
-// Creating a user signup endpoint
-//* http://localhost:4000/user/signup
-router.post("/signup", async (req, res) => {
+// Creating a company signup endpoint
+//* http://localhost:4000/comp/signupComp
+router.post("/signupComp", async (req, res) => {
     try {
         // Making the info for a signup
-        const user = new User ({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
+        const comp = new Comp ({
+            company: req.body.company,
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password, 13)
         });
 
         // Saving the user once input is added
-        const newUser = await user.save();
+        const newComp = await comp.save();
 
         // Making sure our users have their own ID
-        const token = jwt.sign({id: user._id}, SECRET, {expiresIn: "1day"});
+        const token = jwt.sign({id: comp._id}, SECRET, {expiresIn: "1day"});
 
         res.status(200).json({
-            user: newUser,
+            user: newComp,
 
             message: 'Welcome to Career Clash!', token
         });
@@ -35,31 +34,31 @@ router.post("/signup", async (req, res) => {
             ERROR: err.message,
         });
     }
-}); //! WORKS :)))
+}); 
 
 // Login Endpoint
-//* http://localhost:4000/user/login
-router.post("/login", async (req, res) => {
+//* http://localhost:4000/comp/loginComp
+router.post("/loginComp", async (req, res) => {
     try {
         // Things in the body
         const { email, password } = req.body;
 
         // Finding the user
-        const user = await User.findOne({email: email});
+        const comp = await Comp.findOne({email: email});
 
         // If no user = give error
-        if (!user) throw new Error("User not found! :(");
+        if (!comp) throw new Error("Company not found! :(");
 
         // Making sure our user/password match
-        const passwordMatch = await bcrypt.compare(password, user.password);
+        const passwordMatch = await bcrypt.compare(password, comp.password);
 
         if (!passwordMatch) throw new Error("Email or password does not match.");
 
-        const token = jwt.sign({id: user._id}, SECRET, {expiresIn: 60 * 60 * 24});
+        const token = jwt.sign({id: comp._id}, SECRET, {expiresIn: 60 * 60 * 24});
 
         res.status(200).json({
             message: 'Back for the party?!',
-            user,
+            comp,
             token
         });
     } catch (err) {
@@ -70,22 +69,22 @@ router.post("/login", async (req, res) => {
 }); //! WORKS :))
 
 //? GET one user Endpoint
-//* http://localhost:4000/user/info
-router.get("/info", validateSession, async (req, res) => {
+//* http://localhost:4000/comp/compInfo
+router.get("/CompInfo", validateSession, async (req, res) => {
     try {
-        // Finding User
-        const locateUser = await User.findOne({_id: req.user._id});
+        // Finding company
+        const locateComp = await Comp.findOne({_id: req.comp._id});
 
-        locateUser ?
+        locateComp ?
 
         // Sending a response to the user
         res.status(200).json({
-            msg: `User found!`,
-            locateUser
+            msg: `Company found!`,
+            locateComp
         })
 
         : res.status(404).json({
-            msg: "No user found :("
+            msg: "No comp found :("
         })
     } catch (err) {
         res.status(500).json({
@@ -95,21 +94,21 @@ router.get("/info", validateSession, async (req, res) => {
 });
 
 //? Edit User Info Endpoint
-//* http://localhost:4000/user/:id
+//* http://localhost:4000/comp/:id
 router.patch("/:id", validateSession, async (req, res) => {
     try {
         // all the things inside the body that we want to change
-        const { email, password, firstName, lastName } = req.body;
+        const { email, password, company } = req.body;
         // New info in the user
-        const newUserInfo = { email, password, firstName, lastName };
+        const newCompInfo = { email, password, firstName, lastName };
 
         const returnOption = {new: true};
 
         // Finding the user for the update
-        const updateUser = await User.findOneAndUpdate({_id: req.user._id}, newUserInfo, returnOption);
+        const updateUser = await Comp.findOneAndUpdate({_id: req.comp._id}, newCompInfo, returnOption);
 
         // Sending a response to the user.
-        updateUser ?
+        updateComp ?
         res.status(200).json({
             message: `Updated User!`,
             updateUser,
@@ -126,19 +125,19 @@ router.patch("/:id", validateSession, async (req, res) => {
 
 
 //? Delete User Endpoint
-//* http://localhost:4000/user/delete
+//* http://localhost:4000/comp/delete
 router.delete('/delete', validateSession, async (req, res) => {
     try {
         // Pulling in the user we wanna delete.
-        const deleteUser = await User.deleteOne({_id: req.user._id});
+        const deleteComp = await Comp.deleteOne({_id: req.comp._id});
 
         // Sending a response to the user.
-        deleteUser.deletedCount === 1 ?
+        deleteCompany.deletedCount === 1 ?
         res.status(200).json({
-            message: "User deleted!"
+            message: "Company deleted!"
         })
         :res.status(404).json({
-            message: "User not found :("
+            message: "Company not found :("
         });
     } catch (err) {
         res.status(500).json({
@@ -146,4 +145,5 @@ router.delete('/delete', validateSession, async (req, res) => {
         })
     }
 }); //! WORKS :))
+
 module.exports = router;
