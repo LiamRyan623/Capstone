@@ -14,6 +14,7 @@ const app = express();
 //* Controller Variables 
 const user = require("./controllers/user.controller");
 const comp = require("./controllers/company.controller");
+const job = require("./controllers/jobs.controller");
 
 
 
@@ -32,6 +33,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/user", user);
 app.use("/comp", comp);
+app.use("/job", job);
 
 
 

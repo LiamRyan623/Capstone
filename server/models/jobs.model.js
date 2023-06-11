@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
 
 const JobsSchema = new mongoose.Schema({
-  when: {
-    type: Date,
-    required: true,
-  },
-  user: {
+  company: {
     type: String,
     required: true,
   },
@@ -17,10 +13,7 @@ const JobsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  userId: {
-    type: String,
-    required: true,
-  },
+
 });
 
 module.exports = mongoose.model("Jobs", JobsSchema);
