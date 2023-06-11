@@ -94,6 +94,7 @@ router.get("/info", validateSession, async (req, res) => {
     }
 });
 
+
 //? Edit User Info Endpoint
 //* http://localhost:4000/user/:id
 router.patch("/:id", validateSession, async (req, res) => {
@@ -107,6 +108,7 @@ router.patch("/:id", validateSession, async (req, res) => {
 
         // Finding the user for the update
         const updateUser = await User.findOneAndUpdate({_id: req.user._id}, newUserInfo, returnOption);
+
 
         // Sending a response to the user.
         updateUser ?
@@ -146,4 +148,5 @@ router.delete('/delete', validateSession, async (req, res) => {
         })
     }
 }); //! WORKS :))
+
 module.exports = router;
