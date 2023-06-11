@@ -1,9 +1,14 @@
 // Bring in JWT to access its token method/functionality.
 const jwt = require("jsonwebtoken");
+
+// Bring in our User model to reference
+const User = require("../models/user.model");
+
 // Bring in our Jobs model to reference
 //const Jobs = require("../models/jobs.model")
 // Bring in our User model to reference
 //const User = require("../models/user.model");
+
 
 // Build our middleware function (function expression format here)
 const validateSession = async (req, res, next) => {
