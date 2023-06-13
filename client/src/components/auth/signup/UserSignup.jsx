@@ -45,7 +45,7 @@ export default function UserSignup({ updateToken }) {
       const data = await response.json();
       if (data.message === "Welcome to Career Clash!") {
         updateToken(data.token);
-        // navigate("/rooms");
+        navigate("/profile");
       } else {
         alert(data.message);
       }

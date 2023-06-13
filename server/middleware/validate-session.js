@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 // Bring in our User model to reference
 const User = require("../models/user.model");
 
-
 // Bring in our User model to reference
 
 // Bring in our Jobs model to reference
@@ -32,18 +31,11 @@ const validateSession = async (req, res, next) => {
     //3. Provide response - if valid, generate a variable that holds user info.
     // use the .findById() to check for user that matches token user ID
 
-
     const user = await User.findById(decodedToken.id);
     if (!user) throw Error("User not found.");
 
-    
-const user = await User.findById(decodedToken.id);
-if (!user) throw Error("User not found.");
-
-
-
     // Creating a new key within our req (request) object to store our use information
-req.user = user;
+    req.user = user;
 
     return next(); // moves us onto our routes/endpoint
   } catch (err) {
@@ -52,6 +44,3 @@ req.user = user;
 };
 // Export the function
 module.exports = validateSession;
-
-
-

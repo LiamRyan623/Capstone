@@ -18,7 +18,7 @@ export default function UserLogin({ updateToken }) {
       password: passwordRef.current.value,
     });
     // Declare and init our url
-    const url = "http://localhost:4005/user/login";
+    const url = "http://localhost:4000/user/login";
 
     try {
       const res = await fetch(url, {
@@ -30,9 +30,9 @@ export default function UserLogin({ updateToken }) {
       });
       const data = await res.json();
 
-      if (data.message === "Login Successful!") {
+      if (data.message === "Back for the party?!") {
         updateToken(data.token);
-        navigate("/rooms");
+        navigate("/profile");
       } else {
         alert(data.message);
       }
@@ -43,7 +43,7 @@ export default function UserLogin({ updateToken }) {
 
   return (
     <>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Input
             placeholder="Email"

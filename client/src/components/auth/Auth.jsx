@@ -18,6 +18,7 @@ export default function Auth(props) {
         </Nav>
 
         <UserSignup updateToken={props.updateToken} />
+        <UserLogin updateToken={props.updateToken} />
       </Col>
     </>
   );
