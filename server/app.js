@@ -20,7 +20,7 @@ const job = require("./controllers/jobs.controller");
 
 // Create a variable for our connection address variable from the .env
 const MONGO = process.env.MONGODB;
-mongoose.connect(`${MONGO}/Career_Clash`);
+mongoose.connect(`${MONGO}`);
 // Create a variable that is an event listener to check if connected.
 const db = mongoose.connection;
 // Use the above variable to trigger event listener to check connection

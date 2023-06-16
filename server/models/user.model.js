@@ -18,6 +18,14 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    headline:{
+        type: String,
+        required: false,
+    },
+    aboutMe: {
+        type: String,
+        required: false,
+    },
 }
 );
 
