@@ -1,5 +1,6 @@
 import "./App.css";
-import Auth from "./components/auth/Auth";
+// import Auth from "./components/auth/Auth";
+import AuthCompany from "./components/auth/AuthCompany";
 import Profile from "./components/profile/Profile";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
@@ -21,8 +22,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Auth updateToken={updateToken} />} />
+        {/* <Route path="/" element={<Auth updateToken={updateToken} />} /> */}
         <Route path="/userLogin" element />
+        <Route path="/" element={<AuthCompany updateToken={updateToken} />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
