@@ -1,0 +1,26 @@
+.buttonUser {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
+    url(https://images.pexels.com/photos/267569/pexels-photo-267569.jpeg?auto=compress&cs=tinysrgb&w=400);
+  background-size: cover;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 4em;
+  margin-top: 40vh;
+}
+
+.buttonUser:hover {
+  border: 2px #fd5f00 solid;
+}
+
+.buttonOrg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
+    url(https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg?auto=compress&cs=tinysrgb&w=400);
+  color: white;
+  border: 2px solid #fff;
+  padding: 4em;
+  margin-top: 40vh;
+}
+
+.buttonOrg:hover {
+  border: 2px solid #13334c;
+}
