@@ -12,6 +12,8 @@ export default function LandingPage() {
           md="6"
           style={{
             backgroundColor: "#13334c",
+            backgroundImage:
+              "url('https://www.transparenttextures.com/patterns/cubes.png ')",
             height: "100vh",
           }}
         >
@@ -24,6 +26,8 @@ export default function LandingPage() {
           md="6"
           style={{
             backgroundColor: "#fd5f00",
+            backgroundImage:
+              "url('https://www.transparenttextures.com/patterns/cubes.png ')",
             height: "100vh",
           }}
         >
