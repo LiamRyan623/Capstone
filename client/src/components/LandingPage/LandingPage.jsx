@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Col, Row, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import "./LandingPage.css";
@@ -15,11 +15,7 @@ export default function LandingPage() {
             height: "100vh",
           }}
         >
-          <Button
-            className="buttonUser"
-            onClick={() => navigate("/start")}
-            outline
-          >
+          <Button id="buttonUser" onClick={() => navigate("/start")}>
             Career Clash for Individuals
           </Button>
         </Col>
@@ -31,9 +27,7 @@ export default function LandingPage() {
             height: "100vh",
           }}
         >
-          <Button className="buttonOrg" outline>
-            Career Clash for Organizations
-          </Button>
+          <Button id="buttonOrg">Career Clash for Organizations</Button>
         </Col>
       </Row>
     </>
