@@ -20,7 +20,6 @@ export default function ProfileEdit(props) {
 
   const navigate = useNavigate();
 
-  //
 
     return (
       <>
@@ -42,11 +41,11 @@ export default function ProfileEdit(props) {
   };
 
   // Declare url outside fetches, same endpoint but different methods
-  const url = `http://localhost:4000/movies/${id}`;
+  const url = `http://localhost:4000/profile/${id}`;
 
   // Build a fetch to our GET movie by id endpoint
   // Get movie details so we know what we need to change
-  const fetchMovies = async () => {
+  const fetchProfile = async () => {
     const requestOptions = {
       method: "GET",
       headers: new Headers({
@@ -59,14 +58,12 @@ export default function ProfileEdit(props) {
       const data = await res.json();
       //console.log(data);
       // Dive into data from the fetch with obj deconstruction
-      const { title, genre, length, rating, releaseYear } = data.getMovie;
+      const { name, aboutMe, headline, } = data.getProfile;
 
       // Set the base state movie values with that data, movie data pre-patching
-      setMovieTitle(title);
-      setMovieGenre(genre);
-      setMovieLength(length);
-      setMovieRating(rating);
-      setMovieReleased(releaseYear);
+      setName(name);
+      setAboutMe(aboutMe);
+      setHeadline(headline);
     } catch (error) {
       console.error(error);
     }
@@ -84,11 +81,9 @@ export default function ProfileEdit(props) {
 
     // bodyObj is the req.body that the server needs for PATCH
     let bodyObj = JSON.stringify({
-      title: movieTitle,
-      genre: movieGenre,
-      length: movieLength,
-      rating: movieRating,
-      releaseYear: movieReleased,
+     name: profileName,
+     aboutMe: profileAboutMe,
+     headline: profileHeadline,
     });
 
     // Sending our token auth through headers, our bodyObj, and the method PATCH for the endpoint
