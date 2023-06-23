@@ -21,24 +21,6 @@ export default function ProfileEdit(props) {
   const navigate = useNavigate();
 
 
-    return (
-      <>
-        <Input
-          type="select"
-          value={movieReleased}
-          onChange={(e) => setMovieReleased(e.target.value)}
-        >
-          {years.map((year, index) => {
-            return (
-              <option key={index} value={year}>
-                {year}
-              </option>
-            );
-          })}
-        </Input>
-      </>
-    );
-  };
 
   // Declare url outside fetches, same endpoint but different methods
   const url = `http://localhost:4000/profile/${id}`;
