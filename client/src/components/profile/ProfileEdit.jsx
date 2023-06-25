@@ -53,7 +53,7 @@ export default function ProfileEdit(props) {
   // Use useEffect to make sure if the program reloads, we still get the movie
   useEffect(() => {
     if (props.token) {
-      fetchMovies();
+      fetchProfile();
     }
   }, [props.token]);
 
@@ -91,20 +91,19 @@ export default function ProfileEdit(props) {
   return (
     <>
       <h1 style={{ textAlign: "center", textDecoration: "underline" }}>
-        Edit Movie
+        Edit Profile
       </h1>
       <Container>
         <Row>
           <Col md="4">
             <p>
-              <b>{movieTitle}</b>:
-              <br />A {movieGenre} movie rated {movieRating} that runs{" "}
-              {movieLength}
-              minutes was released in {movieReleased}.
+              <b>{name}</b>:
+              <br />{headline}
+              {aboutMe}
               <br /> What needs to be changed?
             </p>
             <FullButton>
-              <Button color="info" outline onClick={() => navigate(`/movie`)}>
+              <Button color="info" outline onClick={() => navigate(`/profile`)}>
                 Back to Table
               </Button>
             </FullButton>
@@ -112,55 +111,28 @@ export default function ProfileEdit(props) {
           <Col md="8">
             <Form onSubmit={handleSubmit}>
               <FormGroup>
-                <Label>Title</Label>
+                <Label>Name</Label>
                 <Input
-                  value={movieTitle}
-                  onChange={(e) => setMovieTitle(e.target.value)}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   autoComplete="off"
                 />
-              </FormGroup>
+                </FormGroup>
               <FormGroup>
-                <Label>Genre</Label>
+                <Label>Headline</Label>
                 <Input
-                  value={movieGenre}
-                  onChange={(e) => setMovieGenre(e.target.value)}
-                  type="select"
-                  autoComplete="off"
-                >
-                  {genre.map((g, i) => (
-                    <option key={i} value={g}>
-                      {g}
-                    </option>
-                  ))}
-                </Input>
-              </FormGroup>
-              <FormGroup>
-                <Label>Rating</Label>
-                <Input
-                  value={movieRating}
-                  onChange={(e) => setMovieRating(e.target.value)}
-                  type="select"
-                  autoComplete="off"
-                >
-                  {ratings.map((r, i) => (
-                    <option key={i} value={r}>
-                      {r}
-                    </option>
-                  ))}
-                </Input>
-              </FormGroup>
-              <FormGroup>
-                <Label>Length</Label>
-                <Input
-                  value={movieLength}
-                  onChange={(e) => setMovieLength(e.target.value)}
-                  type="number"
+                  value={headline}
+                  onChange={(e) => setHeadline(e.target.value)}
                   autoComplete="off"
                 />
-              </FormGroup>
-              <FormGroup>
-                <Label>Release Year</Label>
-                {yearRange()}
+                 </FormGroup>
+                <FormGroup>
+                <Label>About Me</Label>
+                <Input
+                  value={aboutMe}
+                  onChange={(e) => setAboutMe(e.target.value)}
+                  autoComplete="off"
+                />
               </FormGroup>
               <FullButton>
                 <Button color="success">Update Movie</Button>
