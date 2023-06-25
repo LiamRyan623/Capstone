@@ -32,7 +32,7 @@ function App() {
           element={<AuthCompany updateToken={updateToken} />}
         />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/jobs" element={<JobPostings />}/>
+        <Route path="/jobs" element={<JobPostings token={sessionToken} />} />
       </Routes>
     </div>
   );
