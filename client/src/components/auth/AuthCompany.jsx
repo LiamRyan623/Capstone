@@ -1,66 +1,65 @@
-import React from 'react';
-import CompanySignup from './signup/CompanySignup';
-import CompanyLogin from './login/CompanyLogin';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
-import classnames from 'classnames';
+import React, { useState } from "react";
+import CompanyLogin from "./login/CompanyLogin";
+import CompanySignup from "./signup/CompanySignup";
+import { Col, Row, Container, Button, ButtonGroup } from "reactstrap";
 
-export default class AuthCompany extends React.Component {
-  constructor(props) {
-    super(props);
-// state where you ar enow, toggle between signup/login. 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      activeTab: '1'
-    };
-  }
+export default function AuthCompany(props) {
+  const [auth, setAuth] = useState("Signup");
 
-  toggle(tab) {
-    if (this.state.activeTab !== tab) {
-      this.setState({
-        activeTab: tab
-      });
-    }
-  }
-  render() {
-    return (
-      <div>
-        <Nav tabs>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: this.state.activeTab === '1' })}
-              onClick={() => { this.toggle('1'); }}
-            >
-              Login
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: this.state.activeTab === '2' })}
-              onClick={() => { this.toggle('2'); }}
-            >
-              Signup
-            </NavLink>
-          </NavItem>
-        </Nav>
-        <TabContent activeTab={this.state.activeTab}>
-          <TabPane tabId="1">
-            <Row>
-              <Col sm="12">
-                <CompanyLogin updateToken={this.props.updateToken}/>
-              </Col>
-            </Row>
-          </TabPane>
-          <TabPane tabId="2">
-            <Row>
-              <Col sm="12">
-                <CompanySignup updateToken={this.props.updateToken}/>
-              </Col>
-            </Row>
-          </TabPane>
-        </TabContent>
-      </div>
+  const swapForm = () => {
+    auth === "Login" ? setAuth("Signup") : setAuth("Login");
+  };
+
+  const displayForm = () => {
+    return auth === "Signup" ? (
+      <Container>
+        <Col>
+          <Button onClick={swapForm}>Login</Button>
+
+          <Button disabled>Signup</Button>
+        </Col>
+        <Row
+          style={{
+            margin: "1em",
+            justifyContent: "center",
+          }}
+        >
+          <Col md="4">
+            <CompanySignup updateToken={props.updateToken} />
+          </Col>
+        </Row>
+      </Container>
+    ) : (
+      <Container>
+        <Col>
+          <Button disabled>Login</Button>
+
+          <Button onClick={swapForm}>Signup</Button>
+        </Col>
+        <Row style={{ margin: "1em", justifyContent: "center" }}>
+          <Col md="4">
+            <CompanyLogin updateToken={props.updateToken} />
+          </Col>
+        </Row>
+      </Container>
     );
-  }
+  };
+
+  return (
+    <>
+      <h1
+        style={{
+          margin: ".5em",
+          color: "#13334c",
+        }}
+      >
+        Career Clash
+      </h1>
+      <h5 style={{ margin: "1em", color: "white" }}>or</h5>
+
+      {displayForm()}
+    </>
+  );
 }
 
-// Screw the class, change to small toggle function w/ onclick, cause conor hates me 
+// Screw the class, change to small toggle function w/ onclick, cause conor hates me
