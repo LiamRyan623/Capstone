@@ -32,6 +32,15 @@ function App() {
         /> */}
         {/* <Route path="/profile" element={<Profile />} /> */}
         <Route path="/job" element={<JobPostings />}/>
+        {/* <Route path="/" element={<Auth updateToken={updateToken} />} /> */}
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/start" element={<Auth updateToken={updateToken} />} />
+        <Route
+          path="/companystart"
+          element={<AuthCompany updateToken={updateToken} />}
+        />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/jobs" element={<JobPostings token={sessionToken} />} /> 
       </Routes>
     </div>
   );
