@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Card, CardTitle, CardBody, CardText, CardGroup, CardSubtitle, CardImg, Button } from 'reactstrap';
+
+export default function JobPostings(props) {
+  const [ job, setJobs ] = useState("")
 import { useNavigate } from "react-router-dom";
 import {
   Card,
@@ -33,6 +37,13 @@ export default function JobPostings(props) {
       const res = await fetch(url, requestOptions);
       const data = await res.json();
 
+      if (data.message === "We did it!") {
+        setJobs(data.getJobs);
+      } else {
+        setJobs([
+          { company: "Host", body: "Oops! No jobs."},
+        ]);
+      }
       // if (data.status === "Job Found") {
       setJobs(data.getAllJobs);
       // } else {
@@ -48,9 +59,67 @@ export default function JobPostings(props) {
       fetchJobs();
     }
   }, [props.token]);
+// let jobs;
+  const displayJobs = job?.map((job) => {
+    return (
+      <>
+      <CardGroup>
+  <Card>
+    <CardImg
+      alt="Card image cap"
+      src="https://picsum.photos/318/180"
+      top
+      width="100%"
+    />
+    <CardBody>
+      <CardTitle tag="h5">
+        {job.job}
+      </CardTitle>
+      <CardSubtitle
+        className="mb-2 text-muted"
+        tag="h6"
+      >
+        Card subtitle
+      </CardSubtitle>
+      <CardText>
+        This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+      </CardText>
+      <Button>
+        Button
+      </Button>
+    </CardBody>
+  </Card>
+  <Card>
+    <CardImg
+      alt="Card image cap"
+      src="https://picsum.photos/318/180"
+      top
+      width="100%"
+    />
+    <CardBody>
+      <CardTitle tag="h5">
+        Card title
+      </CardTitle>
+      <CardSubtitle
+        className="mb-2 text-muted"
+        tag="h6"
+      >
+        Card subtitle
+      </CardSubtitle>
+      <CardText>
+        This card has supporting text below as a natural lead-in to additional content.
+      </CardText>
+      <Button>
+        Button
+      </Button>
+    </CardBody>
+  </Card>
+</CardGroup>
+      </>
+    )
+  });
 
   console.log(jobs);
-
   return (
     <>
       {jobs.map((job) => (
@@ -74,6 +143,7 @@ export default function JobPostings(props) {
         </CardGroup>
       ))}
     </>
+  )};
   );
   // return <>{displayJobs}</>;
 }
