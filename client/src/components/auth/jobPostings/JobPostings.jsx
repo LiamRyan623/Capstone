@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Card, CardTitle, CardBody, CardText, CardSubtitle, CardImg, Button } from 'reactstrap';
+import React, { useEffect, useState } from "react";
+import { Card, CardTitle, CardBody, CardText, CardGroup, CardSubtitle, CardImg, Button } from 'reactstrap';
 
 export default function JobPostings(props) {
-  const navigate = useNavigate();
+  const [ job, setJobs ] = useState("")
 
   const fetchJobs = async () => {
     const url = "http://localhost:4000/job/:id"
@@ -23,12 +22,12 @@ export default function JobPostings(props) {
       const res = await fetch(url, requestOptions);
       const data = await res.json();
 
-      if (data.jobs === "We did it!") {
+      if (data.message === "We did it!") {
         setJobs(data.getJobs);
       } else {
         setJobs([
           { company: "Host", body: "Oops! No jobs."},
-        ])
+        ]);
       }
     } catch (err) {
       console.log(err);
@@ -40,8 +39,8 @@ export default function JobPostings(props) {
       fetchJobs();
     }
   }, [props.token]);
-
-  const displayJobs = jobs?.map((msg) => {
+// let jobs;
+  const displayJobs = job?.map((job) => {
     return (
       <>
       <CardGroup>
@@ -54,7 +53,7 @@ export default function JobPostings(props) {
     />
     <CardBody>
       <CardTitle tag="h5">
-        Card title
+        {job.job}
       </CardTitle>
       <CardSubtitle
         className="mb-2 text-muted"
@@ -98,10 +97,9 @@ export default function JobPostings(props) {
 </CardGroup>
       </>
     )
-  })
+  });
   return (
     <>
     {displayJobs}
     </>
-  );
-}
+  )};
