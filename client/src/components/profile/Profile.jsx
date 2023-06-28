@@ -3,21 +3,23 @@ import { useState, useEffect} from "react";
 import Name from "./Name"
 import AboutMe from "./AboutMe";
 import Headline from "./Headline"
-import { Col, Container, Row } from "reactstrap";
-import { useParams } from "react-router-dom";
+import { Col, Container, Row, Button } from "reactstrap";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function Profile(props) {
   const { id } = useParams();
-  const [ firstName, setProfileFirstName ] = useState([]);
+  const navigate = useNavigate();
+  const [ user, setUser ] = useState({});
     // Build the movie GET fetch here in index so movies can be passed to any child component
-  const [ lastName, setProfileLastName ] = useState([]);
+/*   const [ lastName, setProfileLastName ] = useState([]);
   const [ aboutMe, setProfileAboutMe ] = useState([]);
-  const [ headline, setProfileHeadline ] = useState([]);
+  const [ headline, setProfileHeadline ] = useState([]); */
 
   //----------------------------------------------
 
-  const fetchProfileFirstName = async () => {
-      const url = `http://localhost:4117/user/${id}`;
+  const fetchUser = async () => {
+      const url = `http://localhost:4000/user/profile`;
+      console.log(id);
       const requestOptions = {
         method: 'GET',
         headers: new Headers({
@@ -28,14 +30,14 @@ export default function Profile(props) {
       try {
         const res = await fetch(url, requestOptions);
         const data = await res.json();
-        // console.log(data);
-        setProfileFirstName(data.getOneProfile);
+        console.log(data);
+        setUser(data.locateUser);
 
       } catch (err) {
         console.log(err);
       }
     }
-
+/*
     //---------------------------------
 
   const fetchProfileHeadline = async () => {
@@ -101,31 +103,31 @@ export default function Profile(props) {
       console.log(err);
     }
   }
-
+*/
   
   // Use useEffect to run the fetch function to check for, and maintain our token.
   useEffect(() => {
     if (props.token) {
-      fetchProfileFirstName();
-      fetchProfileLastName();
+      fetchUser();
+      /* fetchProfileLastName();
       fetchProfileHeadline();
-      fetchProfileAboutMe();
+      fetchProfileAboutMe(); */
     }
   }, [props.token])
-
 //   {console.log(Rooms)}
   return (
     <>
       <Container>
-        <Row>
+         <Row>
           <Col md="4">
-            {/* <RoomCreate token={props.token} fetchRooms={fetchRooms}/> */}
           </Col>
-          <Col md="8"><Name firstName={firstName} token={props.token} fetchProfile={fetchProfileFirstName}/></Col>
-          <Col md="8"><Name lastName={lastName} token={props.token} fetchProfile={fetchProfileLastName}/></Col>
-          <Col md="8"><AboutMe aboutMe={aboutMe} token={props.token} fetchProfile={fetchProfileAboutMe}/></Col>
-          <Col md="8"><Headline headline={headline} token={props.token} fetchProfile={fetchProfileHeadline}/></Col>
+          <Col md="8"><Name firstName={user.firstName} token={props.token}/></Col>
+          <Col md="8"><Name lastName={user.lastName} token={props.token}/></Col>
+          <Col md="8"><AboutMe aboutMe={user.aboutMe} token={props.token}/></Col>
+          <Col md="8"><Headline headline={user.headline} token={props.token}/></Col>
+          <Button onClick={() => navigate("/profileEdit")}>Edit Profile</Button>
         </Row>
+        <h1>Hello</h1>
       </Container>
     </>
   );

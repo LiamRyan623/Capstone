@@ -6,6 +6,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import JobPostings from "./components/jobPostings/JobPostings";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import ProfileEdit from "./components/profile/ProfileEdit";
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
@@ -26,9 +27,13 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/start" element={<Auth updateToken={updateToken} />} />
-        <Route path="/companystart" element={<AuthCompany updateToken={updateToken} />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/jobPostings" element={<JobPostings token={sessionToken} />} /> 
+        <Route
+          path="/companystart"
+          element={<AuthCompany updateToken={updateToken} />}
+        />
+        <Route path="/profile" element={<Profile token = {sessionToken} />} />
+        <Route path="/jobs" element={<JobPostings />}/>
+        <Route path="/profileEdit" element={<ProfileEdit token = {sessionToken}/>} />
       </Routes>
     </div>
   );

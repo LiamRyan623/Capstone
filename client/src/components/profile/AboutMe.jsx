@@ -3,9 +3,9 @@ export default function AboutMe({AboutMe}) {
   
     return (
     <>
-        <tr>
-            <td>{AboutMe}</td>
-        </tr>
+        
+            <h1>{AboutMe}</h1>
+        
     </>
   )
 }

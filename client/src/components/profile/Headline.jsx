@@ -3,9 +3,9 @@ export default function Headline({headline}) {
   
     return (
     <>
-        <tr>
-            <td>{headline}</td>
-        </tr>
+        
+            <h1>{headline}</h1>
+        
     </>
   )
 }
