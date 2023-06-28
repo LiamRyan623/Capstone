@@ -1,11 +1,18 @@
-.leftCol {
-  background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
-  background-position: 50%;
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.rightCol {
-  background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
-  background-position: 50%;
+.mainRow {
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png "),
+    linear-gradient(
+      to right,
+      #13334c 0%,
+      #13334c 45%,
+      #fd5f00 65%,
+      #fd5f00 100%
+    );
+  height: 100vh;
 }
 
 #buttonUser {
