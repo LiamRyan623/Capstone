@@ -70,8 +70,8 @@ router.post("/login", async (req, res) => {
 }); //! WORKS :))
 
 //? GET one user Endpoint
-//* http://localhost:4000/user/info
-router.get("/info", validateSession, async (req, res) => {
+//* http://localhost:4000/user/:id
+router.get("/profile", validateSession, async (req, res) => {
     try {
         // Finding User
         const locateUser = await User.findOne({_id: req.user._id});

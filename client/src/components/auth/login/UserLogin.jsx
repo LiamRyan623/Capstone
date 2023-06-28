@@ -32,7 +32,7 @@ export default function UserLogin({ updateToken }) {
 
       if (data.message === "Back for the party?!") {
         updateToken(data.token);
-        navigate("/profile");
+        navigate(`/profile`);
       } else {
         alert(data.message);
       }
