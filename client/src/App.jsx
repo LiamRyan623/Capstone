@@ -34,6 +34,7 @@ function App() {
         <Route path="/profile" element={<Profile token = {sessionToken} />} />
         <Route path="/jobs" element={<JobPostings />}/>
         <Route path="/profileEdit" element={<ProfileEdit token = {sessionToken}/>} />
+        <Route path="/jobPostings" element={<JobPostings token={sessionToken} />} /> 
       </Routes>
     </div>
   );

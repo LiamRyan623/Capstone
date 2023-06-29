@@ -12,7 +12,6 @@ import {
 
 export default function JobPostings(props) {
   const [jobs, setJobs] = useState([]);
-  
   const fetchJobs = async () => {
     const url = "http://localhost:4000/job/";
     const requestOptions = {
