@@ -3,10 +3,9 @@ export default function MessageRow({firstName, lastName}) {
   
     return (
     <>
-        <tr>
-            <td>{firstName}</td>
-            <td>{lastName}</td>
-        </tr>
+            <h1>{firstName}</h1>
+            <h1>{lastName}</h1>
+
     </>
   )
 }
