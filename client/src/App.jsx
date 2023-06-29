@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import ProfileEdit from "./components/profile/ProfileEdit";
 
+
 function App() {
   const [sessionToken, setSessionToken] = useState("");
 
