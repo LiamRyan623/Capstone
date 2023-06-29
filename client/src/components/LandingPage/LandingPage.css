@@ -8,8 +8,8 @@ body {
     linear-gradient(
       to right,
       #13334c 0%,
-      #13334c 45%,
-      #fd5f00 65%,
+      #13334c 40%,
+      #fd5f00 60%,
       #fd5f00 100%
     );
   height: 100vh;

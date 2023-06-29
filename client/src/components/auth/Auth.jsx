@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import UserLogin from "./login/UserLogin";
 import UserSignup from "./signup/UserSignup";
 import { Col, Row, Container, Button, ButtonGroup } from "reactstrap";
+import "./Auth.css";
 
 export default function Auth(props) {
   const [auth, setAuth] = useState("Signup");
@@ -12,32 +13,35 @@ export default function Auth(props) {
 
   const displayForm = () => {
     return auth === "Signup" ? (
-      <Container>
-        <Col>
-          <Button onClick={swapForm}>Login</Button>
+      <Container className="authCont">
+        <ButtonGroup className="bGroup">
+          <Button className="lsTog" onClick={swapForm}>
+            Login
+          </Button>
 
-          <Button disabled>Signup</Button>
-        </Col>
-        <Row
-          style={{
-            margin: "1em",
-            justifyContent: "center",
-          }}
-        >
-          <Col md="4">
+          <Button className="lsTog" disabled>
+            Signup
+          </Button>
+        </ButtonGroup>
+        <Row>
+          <Col>
             <UserSignup updateToken={props.updateToken} />
           </Col>
         </Row>
       </Container>
     ) : (
-      <Container>
-        <Col>
-          <Button disabled>Login</Button>
+      <Container className="authCont">
+        <ButtonGroup className="bGroup">
+          <Button className="lsTog" disabled>
+            Login
+          </Button>
 
-          <Button onClick={swapForm}>Signup</Button>
-        </Col>
-        <Row style={{ margin: "1em", justifyContent: "center" }}>
-          <Col md="4">
+          <Button className="lsTog" onClick={swapForm}>
+            Signup
+          </Button>
+        </ButtonGroup>
+        <Row>
+          <Col>
             <UserLogin updateToken={props.updateToken} />
           </Col>
         </Row>
@@ -55,7 +59,6 @@ export default function Auth(props) {
       >
         Career Clash
       </h1>
-      <h5 style={{ margin: "1em", color: "white" }}>or</h5>
 
       {displayForm()}
     </>
