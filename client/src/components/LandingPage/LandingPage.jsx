@@ -9,6 +9,7 @@ export default function LandingPage() {
     <>
       <Row>
         <Col
+          className="leftCol"
           md="6"
           style={{
             backgroundColor: "#13334c",
@@ -21,6 +22,7 @@ export default function LandingPage() {
         </Col>
 
         <Col
+          className="rightCol"
           md="6"
           style={{
             backgroundColor: "#fd5f00",

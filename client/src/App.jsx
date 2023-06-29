@@ -25,6 +25,14 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        {/* <Route path="/" element={<LandingPage />} /> */}
+        {/* <Route path="/start" element={<Auth updateToken={updateToken} />} /> */}
+        {/* <Route
+         path="/companystart"
+         element={<AuthCompany updateToken={updateToken} />}
+        /> */}
+        {/* <Route path="/profile" element={<Profile />} /> */}
+        <Route path="/job" element={<JobPostings />}/>
         {/* <Route path="/" element={<Auth updateToken={updateToken} />} /> */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/start" element={<Auth updateToken={updateToken} />} />
@@ -33,8 +41,8 @@ function App() {
           element={<AuthCompany updateToken={updateToken} />}
         />
         <Route path="/profile" element={<Profile token = {sessionToken} />} />
-        <Route path="/jobs" element={<JobPostings />}/>
         <Route path="/profileEdit" element={<ProfileEdit token = {sessionToken}/>} />
+        <Route path="/jobs" element={<JobPostings token={sessionToken} />} /> 
       </Routes>
     </div>
   );
