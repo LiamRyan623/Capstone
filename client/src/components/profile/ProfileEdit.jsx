@@ -10,7 +10,6 @@ import {
   Label,
   Button,
 } from "reactstrap";
-import FullButton from "../buttons/FullButton";
 
 export default function ProfileEdit(props) {
   const { id } = useParams();
@@ -23,31 +22,28 @@ export default function ProfileEdit(props) {
 
 
   // Declare url outside fetches, same endpoint but different methods
-  const url = `http://localhost:4000/profile/${id}`;
+  const url = `http://localhost:4000/user/profile`;
 
   // Build a fetch to our GET movie by id endpoint
   // Get movie details so we know what we need to change
   const fetchProfile = async () => {
+    const url = `http://localhost:4000/user/profile`;
+    console.log(id);
     const requestOptions = {
-      method: "GET",
+      method: 'GET',
       headers: new Headers({
-        Authorization: props.token,
-      }),
-    };
+        "Authorization": props.token
+      })
+    } 
 
     try {
       const res = await fetch(url, requestOptions);
       const data = await res.json();
-      //console.log(data);
-      // Dive into data from the fetch with obj deconstruction
-      const { name, aboutMe, headline, } = data.getProfile;
+      console.log(data);
+      setUser(data.locateUser);
 
-      // Set the base state movie values with that data, movie data pre-patching
-      setName(name);
-      setAboutMe(aboutMe);
-      setHeadline(headline);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.log(err);
     }
   };
   // Use useEffect to make sure if the program reloads, we still get the movie
@@ -102,11 +98,9 @@ export default function ProfileEdit(props) {
               {aboutMe}
               <br /> What needs to be changed?
             </p>
-            <FullButton>
               <Button color="info" outline onClick={() => navigate(`/profile`)}>
                 Back to Table
               </Button>
-            </FullButton>
           </Col>
           <Col md="8">
             <Form onSubmit={handleSubmit}>
@@ -134,9 +128,7 @@ export default function ProfileEdit(props) {
                   autoComplete="off"
                 />
               </FormGroup>
-              <FullButton>
-                <Button color="success">Update Movie</Button>
-              </FullButton>
+                <Button color="success">Update Profile</Button>
             </Form>
           </Col>
         </Row>
