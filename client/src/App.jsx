@@ -7,6 +7,7 @@ import JobPostings from "./components/jobPostings/JobPostings";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
+
 function App() {
   const [sessionToken, setSessionToken] = useState("");
 
