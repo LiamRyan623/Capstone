@@ -16,18 +16,20 @@ export default function ProfileEdit(props) {
   const [name, setName] = useState("");
   const [headline, setHeadline] = useState("");
   const [aboutMe, setAboutMe] = useState("");
-
+  const [ user, setUser ] = useState({});
   const navigate = useNavigate();
 
 
 
+
   // Declare url outside fetches, same endpoint but different methods
-  const url = `http://localhost:4000/user/profile`;
+  const url = `http://localhost:4000/user/${id}`;
+  console.log("console logging ID", props.user)
 
   // Build a fetch to our GET movie by id endpoint
   // Get movie details so we know what we need to change
   const fetchProfile = async () => {
-    const url = `http://localhost:4000/user/profile`;
+    //const url = `http://localhost:4000/user/${id}`;
     console.log(id);
     const requestOptions = {
       method: 'GET',
@@ -39,7 +41,7 @@ export default function ProfileEdit(props) {
     try {
       const res = await fetch(url, requestOptions);
       const data = await res.json();
-      console.log(data);
+      //console.log(data);
       setUser(data.locateUser);
 
     } catch (err) {
@@ -59,9 +61,9 @@ export default function ProfileEdit(props) {
 
     // bodyObj is the req.body that the server needs for PATCH
     let bodyObj = JSON.stringify({
-     name: profileName,
+  /*    name: profileName,
      aboutMe: profileAboutMe,
-     headline: profileHeadline,
+     headline: profileHeadline, */
     });
 
     // Sending our token auth through headers, our bodyObj, and the method PATCH for the endpoint
@@ -77,7 +79,8 @@ export default function ProfileEdit(props) {
     try {
       const res = await fetch(url, requestOptions);
       const data = await res.json();
-      //console.log(data);
+      console.log(data);
+      setName(data.name)
       // Use navigate on the button to go back to table view
     } catch (error) {
       console.error(error);
@@ -99,7 +102,7 @@ export default function ProfileEdit(props) {
               <br /> What needs to be changed?
             </p>
               <Button color="info" outline onClick={() => navigate(`/profile`)}>
-                Back to Table
+                Back to Profile
               </Button>
           </Col>
           <Col md="8">
