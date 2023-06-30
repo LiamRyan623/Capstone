@@ -7,26 +7,14 @@ export default function LandingPage() {
   const navigate = useNavigate();
   return (
     <>
-      <Row>
-        <Col
-          md="6"
-          style={{
-            backgroundColor: "#13334c",
-            height: "100vh",
-          }}
-        >
+      <Row className="mainRow">
+        <Col md="6">
           <Button id="buttonUser" onClick={() => navigate("/start")}>
             Career Clash for Individuals
           </Button>
         </Col>
 
-        <Col
-          md="6"
-          style={{
-            backgroundColor: "#fd5f00",
-            height: "100vh",
-          }}
-        >
+        <Col md="6">
           <Button id="buttonOrg" onClick={() => navigate("/companystart")}>
             Career Clash for Organizations
           </Button>

@@ -1,5 +1,11 @@
 body {
+  margin: 0;
+  padding: 0;
+}
+
+.rightCol {
   background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
+  background-position: 50%;
 }
 
 #buttonUser {

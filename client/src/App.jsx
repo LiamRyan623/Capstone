@@ -3,7 +3,7 @@ import Auth from "./components/auth/Auth";
 import AuthCompany from "./components/auth/AuthCompany";
 import Profile from "./components/profile/Profile";
 import LandingPage from "./components/LandingPage/LandingPage";
-import JobPostings from "./components/auth/jobPostings/JobPostings";
+import JobPostings from "./components/jobPostings/JobPostings";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import ProfileEdit from "./components/profile/ProfileEdit";
@@ -25,16 +25,11 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        {/* <Route path="/" element={<Auth updateToken={updateToken} />} /> */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/start" element={<Auth updateToken={updateToken} />} />
-        <Route
-          path="/companystart"
-          element={<AuthCompany updateToken={updateToken} />}
-        />
-        <Route path="/profile" element={<Profile token = {sessionToken} />} />
-        <Route path="/jobs" element={<JobPostings />}/>
-        <Route path="/profileEdit" element={<ProfileEdit token = {sessionToken}/>} />
+        <Route path="/companystart" element={<AuthCompany updateToken={updateToken} />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/jobPostings" element={<JobPostings token={sessionToken} />} /> 
       </Routes>
     </div>
   );
