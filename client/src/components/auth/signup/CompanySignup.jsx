@@ -6,11 +6,11 @@ export default function CompanySignup({ updateToken }) {
   // We need to build out the handle submit function!
 
   const companyRef = useRef();
-  console.log(companyRef)
+  console.log(companyRef);
   const emailRef = useRef();
-  console.log(emailRef)
+  console.log(emailRef);
   const passwordRef = useRef();
-  console.log(passwordRef)
+  console.log(passwordRef);
 
   const navigate = useNavigate();
 
@@ -79,7 +79,7 @@ export default function CompanySignup({ updateToken }) {
             innerRef={passwordRef}
           />
         </FormGroup>
-        <Button outline color="primary" block type="submit">
+        <Button outline block type="submit">
           Signup
         </Button>
       </Form>
