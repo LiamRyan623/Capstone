@@ -23,6 +23,7 @@ export default function ProfileEdit(props) {
 
 
   // Declare url outside fetches, same endpoint but different methods
+
   //const url = `http://localhost:4000/user/${id}`;
   //console.log("console logging ID", props.user)
 
@@ -52,7 +53,6 @@ export default function ProfileEdit(props) {
   // Fetching user data without id = gives us access to info to populate the form AND an id to run the edit endpoint
   const fetchUser = async () => {
     const url = `http://localhost:4000/user/profile`;
-    
     const requestOptions = {
       method: 'GET',
       headers: new Headers({
