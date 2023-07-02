@@ -69,7 +69,7 @@ export default function ProfileEdit(props) {
       setFirstName(`${data.locateUser.firstName}`)
       setLastName(`${data.locateUser.lastName}`)
       setHeadline(`${data.locateUser.headline}`)
-      setAboutMe(`${data.locateUser.AboutMe}`)
+      setAboutMe(`${data.locateUser.aboutMe}`)
     } catch (err) {
       console.log(err);
     }
