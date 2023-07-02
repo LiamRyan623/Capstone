@@ -27,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/start" element={<Auth updateToken={updateToken} />} />
+<<<<<<< HEAD
         <Route
           path="/companystart"
           element={<AuthCompany updateToken={updateToken} />}
@@ -34,6 +35,12 @@ function App() {
         <Route path="/profile" element={<Profile token = {sessionToken} />} />
         <Route path="/jobs" element={<JobPostings />}/>
         <Route path="/profileEdit" element={<ProfileEdit token = {sessionToken}/>} />
+=======
+        <Route path="/companystart" element={<AuthCompany updateToken={updateToken} />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/profileEdit" element={<ProfileEdit token=
+        {sessionToken}/>} />
+>>>>>>> eab4b1b (jobPosting working)
         <Route path="/jobPostings" element={<JobPostings token={sessionToken} />} /> 
       </Routes>
     </div>
