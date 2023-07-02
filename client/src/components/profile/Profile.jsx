@@ -130,7 +130,6 @@ export default function Profile(props) {
           <Button onClick={() => navigate("/profileEdit")}>Edit Profile</Button>
           {/* <ProfileEdit user = {user}/> */}
         </Row>
-        <h1>Hello</h1>
       </Container>
     </>
   );
