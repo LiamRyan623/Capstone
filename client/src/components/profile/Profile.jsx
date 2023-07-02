@@ -5,7 +5,7 @@ import AboutMe from "./AboutMe";
 import Headline from "./Headline"
 import { Col, Container, Row, Button } from "reactstrap";
 import { useParams, useNavigate } from "react-router-dom";
-import ProfileEdit from "./ProfileEdit";
+//import ProfileEdit from "./ProfileEdit";
 
 export default function Profile(props) {
   const { id } = useParams();
@@ -20,7 +20,7 @@ export default function Profile(props) {
 
   const fetchUser = async () => {
       const url = `http://localhost:4000/user/profile`;
-      console.log(id);
+      //console.log(id);
       const requestOptions = {
         method: 'GET',
         headers: new Headers({
@@ -124,8 +124,9 @@ export default function Profile(props) {
           </Col>
           <Col md="8"><Name firstName={user.firstName} token={props.token}/></Col>
           <Col md="8"><Name lastName={user.lastName} token={props.token}/></Col>
-          <Col md="8"><AboutMe aboutMe={user.aboutMe} token={props.token}/></Col>
           <Col md="8"><Headline headline={user.headline} token={props.token}/></Col>
+          <Col md="8"><AboutMe aboutMe={user.aboutMe} token={props.token}/></Col>
+          
           <Button onClick={() => navigate("/profileEdit")}>Edit Profile</Button>
           {/* <ProfileEdit user = {user}/> */}
         </Row>
