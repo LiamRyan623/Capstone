@@ -3,7 +3,7 @@ export default function AboutMe({aboutMe}) {
   
     return (
     <>
-        
+
             <h1>{aboutMe}</h1>
         
     </>
