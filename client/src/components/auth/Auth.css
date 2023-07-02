@@ -1,11 +1,10 @@
 .authCont {
-  border: 2px solid #13334c;
   border-radius: 18px;
   padding: 2em;
-  height: 60vh !important;
   width: 30% !important;
-  box-shadow: 5px 5px 5px 5px rgb(207, 207, 207);
+  box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
   background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
+  background-color: white;
 }
 
 .lsTog {

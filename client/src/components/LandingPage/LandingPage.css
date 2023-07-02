@@ -3,9 +3,21 @@ body {
   padding: 0;
 }
 
-.rightCol {
-  background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
-  background-position: 50%;
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.mainRow {
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png "),
+    linear-gradient(
+      to right,
+      #13334c 0%,
+      #13334c 40%,
+      #fd5f00 60%,
+      #fd5f00 100%
+    );
+  min-height: 100vh;
 }
 
 #buttonUser {
