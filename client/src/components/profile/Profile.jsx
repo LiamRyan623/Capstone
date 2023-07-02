@@ -5,6 +5,7 @@ import AboutMe from "./AboutMe";
 import Headline from "./Headline"
 import { Col, Container, Row, Button } from "reactstrap";
 import { useParams, useNavigate } from "react-router-dom";
+import "./profile.css"
 //import ProfileEdit from "./ProfileEdit";
 
 export default function Profile(props) {
@@ -117,11 +118,12 @@ export default function Profile(props) {
   }, [props.token])
 //   {console.log(Rooms)}
   return (
+    <div id="data">
     <>
       <Container>
          <Row>
-          <Col md="4">
-          </Col>
+         {/*  <Col md="4">
+          </Col> */}
           <Col md="8"><Name firstName={user.firstName} token={props.token}/></Col>
           <Col md="8"><Name lastName={user.lastName} token={props.token}/></Col>
           <Col md="8"><Headline headline={user.headline} token={props.token}/></Col>
@@ -133,6 +135,7 @@ export default function Profile(props) {
         <h1>Hello</h1>
       </Container>
     </>
+    </div>
   );
 }
 
