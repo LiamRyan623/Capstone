@@ -29,6 +29,8 @@ function App() {
         <Route path="/start" element={<Auth updateToken={updateToken} />} />
         <Route path="/companystart" element={<AuthCompany updateToken={updateToken} />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/profileEdit" element={<ProfileEdit token=
+        {sessionToken}/>} />
         <Route path="/jobPostings" element={<JobPostings token={sessionToken} />} /> 
       </Routes>
     </div>
