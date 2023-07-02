@@ -100,9 +100,9 @@ router.get("/profile", validateSession, async (req, res) => {
 router.patch("/:id", validateSession, async (req, res) => {
     try {
         // all the things inside the body that we want to change
-        const { email, password, firstName, lastName } = req.body;
+        const { email, password, firstName, lastName, headline, aboutMe } = req.body;
         // New info in the user
-        const newUserInfo = { email, password, firstName, lastName };
+        const newUserInfo = { email, password, firstName, lastName, headline, aboutMe };
 
         const returnOption = {new: true};
 
