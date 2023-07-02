@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Col,
   Container,
@@ -12,23 +12,47 @@ import {
 } from "reactstrap";
 
 export default function ProfileEdit(props) {
-  const { id } = useParams();
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [headline, setHeadline] = useState("");
   const [aboutMe, setAboutMe] = useState("");
-
+  const [ user, setUser ] = useState({});
   const navigate = useNavigate();
 
 
 
+
   // Declare url outside fetches, same endpoint but different methods
-  const url = `http://localhost:4000/user/profile`;
+
+  //const url = `http://localhost:4000/user/${id}`;
+  //console.log("console logging ID", props.user)
 
   // Build a fetch to our GET movie by id endpoint
   // Get movie details so we know what we need to change
-  const fetchProfile = async () => {
+  // const fetchProfile = async () => {
+  //   //const url = `http://localhost:4000/user/${id}`;
+  //   console.log(id);
+  //   const requestOptions = {
+  //     method: 'GET',
+  //     headers: new Headers({
+  //       "Authorization": props.token
+  //     })
+  //   } 
+
+  //   try {
+  //     const res = await fetch(url, requestOptions);
+  //     const data = await res.json();
+  //     console.log(data.locateUser);
+  //     setUser(data.locateUser);
+
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  // Fetching user data without id = gives us access to info to populate the form AND an id to run the edit endpoint
+  const fetchUser = async () => {
     const url = `http://localhost:4000/user/profile`;
-    console.log(id);
     const requestOptions = {
       method: 'GET',
       headers: new Headers({
@@ -39,29 +63,43 @@ export default function ProfileEdit(props) {
     try {
       const res = await fetch(url, requestOptions);
       const data = await res.json();
-      console.log(data);
+      console.log(data.locateUser);
       setUser(data.locateUser);
-
+      // set first name, set last name with state to edit/update name changes
+      setFirstName(`${data.locateUser.firstName}`)
+      setLastName(`${data.locateUser.lastName}`)
+      setHeadline(`${data.locateUser.headline}`)
+      setAboutMe(`${data.locateUser.AboutMe}`)
     } catch (err) {
       console.log(err);
     }
-  };
+  }
+
+
+
+
   // Use useEffect to make sure if the program reloads, we still get the movie
   useEffect(() => {
     if (props.token) {
-      fetchProfile();
+      fetchUser();
     }
   }, [props.token]);
 
-  // Build handleSubmit for form with fetch: fetch to our PATCH endpoint
+  // Build handleSubmit for form with fetch: fetch to our PATCH endpoint <--- 
   async function handleSubmit(e) {
     e.preventDefault();
 
+    // Build our URL
+    const url = `http://localhost:4000/user/${user._id}`;
+    console.log("user id",user._id);
+
     // bodyObj is the req.body that the server needs for PATCH
+    // DB obj key on the left : on the right side have the current updated state; firstName: firstName
     let bodyObj = JSON.stringify({
-     name: profileName,
-     aboutMe: profileAboutMe,
-     headline: profileHeadline,
+     firstName: firstName,
+     lastName: lastName,
+     aboutMe: aboutMe,
+     headline: headline,
     });
 
     // Sending our token auth through headers, our bodyObj, and the method PATCH for the endpoint
@@ -77,8 +115,10 @@ export default function ProfileEdit(props) {
     try {
       const res = await fetch(url, requestOptions);
       const data = await res.json();
-      //console.log(data);
+      console.log(data);
+      // data should have a yes message if it worked or a nah
       // Use navigate on the button to go back to table view
+      navigate(-1);
     } catch (error) {
       console.error(error);
     }
@@ -91,24 +131,21 @@ export default function ProfileEdit(props) {
       </h1>
       <Container>
         <Row>
-          <Col md="4">
-            <p>
-              <b>{name}</b>:
-              <br />{headline}
-              {aboutMe}
-              <br /> What needs to be changed?
-            </p>
-              <Button color="info" outline onClick={() => navigate(`/profile`)}>
-                Back to Table
-              </Button>
-          </Col>
           <Col md="8">
             <Form onSubmit={handleSubmit}>
               <FormGroup>
-                <Label>Name</Label>
+                <Label>First Name</Label>
                 <Input
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  autoComplete="off"
+                />
+                </FormGroup>
+                <FormGroup>
+                <Label>Last Name</Label>
+                <Input
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   autoComplete="off"
                 />
                 </FormGroup>

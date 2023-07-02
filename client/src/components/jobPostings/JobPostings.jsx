@@ -12,12 +12,9 @@ import {
 
 export default function JobPostings(props) {
   const [jobs, setJobs] = useState([]);
-<<<<<<< HEAD
-=======
   const [currentIndexA, setCurrentIndexA] = useState(0);
   const [currentIndexB, setCurrentIndexB] = useState(0);
-
->>>>>>> eab4b1b (jobPosting working)
+  
   const fetchJobs = async () => {
     const url = "http://localhost:4000/job/";
     const requestOptions = {

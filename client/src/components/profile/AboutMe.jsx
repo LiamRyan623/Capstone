@@ -1,10 +1,10 @@
-export default function AboutMe({AboutMe}) {
+export default function AboutMe({aboutMe}) {
     // let date = new Date().getFullYear();
   
     return (
     <>
-        
-            <h1>{AboutMe}</h1>
+
+            <h1>{aboutMe}</h1>
         
     </>
   )
