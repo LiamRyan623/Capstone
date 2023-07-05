@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Form, FormGroup, Input, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 export default function CompanyLogin(props, { updateToken }) {
   const emailRef = useRef();
@@ -60,13 +61,7 @@ export default function CompanyLogin(props, { updateToken }) {
             autoComplete="off"
           />
         </FormGroup>
-        <Button
-          outline
-          color="primary"
-          style={{ float: "right" }}
-          type="submit"
-          block
-        >
+        <Button id="loginBtn" outline type="submit" block>
           Login
         </Button>
       </Form>
