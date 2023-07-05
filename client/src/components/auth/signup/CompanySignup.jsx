@@ -1,6 +1,7 @@
 import { Form, FormGroup, Input, Button } from "reactstrap";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Signup.css";
 
 export default function CompanySignup({ updateToken }) {
   // We need to build out the handle submit function!
@@ -79,7 +80,7 @@ export default function CompanySignup({ updateToken }) {
             innerRef={passwordRef}
           />
         </FormGroup>
-        <Button outline block type="submit">
+        <Button id="signupBtn" outline block type="submit">
           Signup
         </Button>
       </Form>
