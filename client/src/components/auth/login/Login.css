@@ -1,0 +1,9 @@
+#loginBtn {
+  border: 1px solid #13334c;
+  color: #13334c;
+}
+
+#loginBtn:hover {
+  background-color: #13334c;
+  color: #fd5f00;
+}
