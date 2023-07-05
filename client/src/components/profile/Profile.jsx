@@ -129,6 +129,8 @@ export default function Profile(props) {
           <Col md="8"><Headline headline={user.headline} token={props.token}/></Col>
           <Col md="8"><AboutMe aboutMe={user.aboutMe} token={props.token}/></Col>
           
+
+          <Button onClick={()}
           <Button onClick={() => navigate("/profileEdit")}>Edit Profile</Button>
           {/* <ProfileEdit user = {user}/> */}
         </Row>
