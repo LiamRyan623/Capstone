@@ -15,6 +15,68 @@ export default function JobPostings(props) {
   const [currentIndexA, setCurrentIndexA] = useState(0);
   const [currentIndexB, setCurrentIndexB] = useState(0);
   
+  function getRandomIndices(arr) {
+    // nested fn to create a random num
+    let makeNum = () => {
+      return Math.floor(Math.random() * (arr.length - 1));
+    }
+
+    // Assign values
+    let numA = makeNum();
+    let numB = makeNum();
+    console.log(`Pre if else log: numA is ${numA}, numB is ${numB}`)
+    // nested fn to check if valid num, return from nested fun
+      if (numA !== numB) {
+        // only return the values when all if cases pass
+        setCurrentIndexA(numA)
+      setCurrentIndexB(numB)
+      } else if (numA < 0 || numB < 0) {
+        // if check for num A and if check 
+        if (numA < 0) {
+          return numA * -1
+        }
+        if (numB < 0) {
+          return numB * -1
+        }
+        setCurrentIndexA(numA)
+      setCurrentIndexB(numB)
+      } else {
+        numA = 0;
+        numB = makeNum();
+        setCurrentIndexA(numA)
+      setCurrentIndexB(numB)
+      }
+    console.log(`Post if else log: numA is ${numA}, numB is ${numB}`)
+    
+    // Generate the first random index
+    //let numA = makeNum()
+    // Generate the second random index
+    //let numB = Math.floor(Math.random() * (arr.length - 1));
+  
+    // numB and num A !==
+    // each num !< 0
+    // each num !> arr.length - 1
+    
+      // setCurrentIndexA(numA)
+      // setCurrentIndexB(numB)
+    
+  }
+
+  const getNewA = (arr) => {
+    let newA =  Math.floor(Math.random() * (arr.length - 1));
+
+    if (newA != currentIndexB) {
+      console.log(newA, currentIndexB)
+      return setCurrentIndexA(newA);
+    } else {
+      console.log("same number")
+    }
+  }
+
+  const getNewB = () => {
+
+  }
+
   const fetchJobs = async () => {
     const url = "http://localhost:4000/job/";
     const requestOptions = {
@@ -31,6 +93,10 @@ export default function JobPostings(props) {
       setJobs(data.getAllJobs)
       //console.log(data.getAllJobs)
       // call the fn to make random #s
+      getRandomIndices(jobs)
+        // const [numA, numB] = getRandomIndices(jobs)
+        // setCurrentIndexA(numA)
+        // setCurrentIndexB(numB)
     } catch (err) {
       console.log(err);
     }
@@ -42,11 +108,8 @@ export default function JobPostings(props) {
     }
   }, [props.token])
 
-  // console.log("jobs", jobs[0])
-  // <h1>{jobs[currentIndex].job}</h1>
-
   let displayJobs = () => {
-    if (jobs[currentIndexA, currentIndexB] !== undefined) {
+    if (jobs[currentIndexA] !== undefined && jobs[currentIndexB] !== undefined) {
       return (
         <>
           <CardGroup>
@@ -61,10 +124,11 @@ export default function JobPostings(props) {
                 <CardTitle tag="h5">{jobs[currentIndexA].job}</CardTitle>
                 <CardSubtitle className="mb-2 text-muted" tag="h6">{jobs[currentIndexA].company}</CardSubtitle>
                 <CardText>{jobs[currentIndexA].description}</CardText>
-                <Button>No thanks!</Button>
+                <Button onClick={() => getNewA(jobs)}>No thanks!</Button>
                 <Button>Hire me!</Button>
               </CardBody>
             </Card>
+
             <Card>
               <CardImg
               alt="Card image cap"
@@ -76,7 +140,7 @@ export default function JobPostings(props) {
                 <CardTitle tag="h5">{jobs[currentIndexB].job}</CardTitle>
                 <CardSubtitle className="mb-2 text-muted" tag="h6">{jobs[currentIndexB].company}</CardSubtitle>
                 <CardText>{jobs[currentIndexB].description}</CardText>
-                <Button>No thanks!</Button>
+                <Button onClick={() => getNewB(jobs)}>No thanks!</Button>
                 <Button>Hire me!</Button>
               </CardBody>
             </Card>
