@@ -121,20 +121,26 @@ export default function Profile(props) {
     <div id="data">
     <>
       <Container>
-         <Row>
-         {/*  <Col md="4">
-          </Col> */}
-          <Col md="8"><Name firstName={user.firstName} token={props.token}/></Col>
-          <Col md="8"><Name lastName={user.lastName} token={props.token}/></Col>
-          <Col md="8"><Headline headline={user.headline} token={props.token}/></Col>
-          <Col md="8"><AboutMe aboutMe={user.aboutMe} token={props.token}/></Col>
-          
-
-          <Button onClick={()}
-          <Button onClick={() => navigate("/profileEdit")}>Edit Profile</Button>
-          {/* <ProfileEdit user = {user}/> */}
-        </Row>
-        <h1>Hello</h1>
+        <div>
+          <Row>
+              <div id="content">
+                <div id="name">
+                  <Col md="8"><Name firstName={user.firstName} token={props.token}/></Col>
+                  <Col md="8"><Name lastName={user.lastName} token={props.token}/></Col>
+                </div>
+                <div id="headline">   
+                  <Col md="8"><Headline headline={user.headline} token={props.token}/></Col>
+                </div> 
+                <div id="aboutMe">
+                  <Col md="8"><AboutMe aboutMe={user.aboutMe} token={props.token}/></Col>
+                </div>
+              </div>
+              <div id="buttons">
+                <Button onClick={() => navigate("/jobPostings")}>Job Postings</Button>
+                <Button onClick={() => navigate("/profileEdit")}>Edit Profile</Button>
+              </div>
+          </Row>
+        </div>
       </Container>
     </>
     </div>
