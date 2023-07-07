@@ -1,0 +1,11 @@
+export default function MessageRow({firstName, lastName}) {
+    // let date = new Date().getFullYear();
+  
+    return (
+    <>
+            <h1>{firstName}</h1>
+            <h1>{lastName}</h1>
+
+    </>
+  )
+}
