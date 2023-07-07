@@ -4,12 +4,12 @@ import Name from "./Name"
 import AboutMe from "./AboutMe";
 import Headline from "./Headline"
 import { Col, Container, Row, Button } from "reactstrap";
-import { useParams, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import "./profile.css"
 //import ProfileEdit from "./ProfileEdit";
 
 export default function Profile(props) {
-  const { id } = useParams();
+  //const { id } = useParams();
   const navigate = useNavigate();
   const [ user, setUser ] = useState({});
     // Build the movie GET fetch here in index so movies can be passed to any child component
@@ -119,6 +119,15 @@ export default function Profile(props) {
 //   {console.log(Rooms)}
   return (
     <div id="data">
+      <img
+          style={{
+            margin: "1.5em",
+            height: "120px",
+            width: "180px",
+          }}
+          src="https://i.ibb.co/7NpG7dv/Career-Clash.png"
+          alt="Logo"
+        ></img>
     <>
       <Container>
         <div>
@@ -129,7 +138,7 @@ export default function Profile(props) {
                   <Col md="8"><Name lastName={user.lastName} token={props.token}/></Col>
                 </div>
                 <div id="headline">   
-                  <Col md="8"><Headline headline={user.headline} token={props.token}/></Col>
+                  <Col  md="8"><Headline headline={user.headline} token={props.token}/></Col>
                 </div> 
                 <div id="aboutMe">
                   <Col md="8"><AboutMe aboutMe={user.aboutMe} token={props.token}/></Col>
