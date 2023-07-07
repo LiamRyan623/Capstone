@@ -1,46 +1,49 @@
 body {
-    background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
+    background-color: #13334c;
     min-height: 100vh;
-    margin: 0;
-    padding: 0;
 }
 
 #data {
-    text-align: left;
+    align-content: center !important; 
+    background-color: #13334c;
+    min-height: 100vh;
 }
 
 #name {
+    margin: 10px;
+    text-align: left !important;
     font-family: 'Times New Roman', Times, serif;
-    padding: 20px;
-    border: 2px solid black;
-    border-radius: 15px;
-    margin-right: 700px;
-    display: inline-grid;
-    grid-template-columns: 6fr 6fr;
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
-    justify-items:auto;
-    align-items: auto;
+    border-radius: 18px;
+    padding: 2em;
+    width: 25% !important;
+    box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
+    background-color: white;
 }
 
 #headline {
+    margin: 10px;
+    text-align: left;
+    font-size: 3px; 
     font-family: 'Times New Roman', Times, serif;
-    font-size: medium;
-    padding: 20px;
-    border: 2px solid black;
-    border-radius: 15px;
-    margin-right: 500px;
-    margin-top: 10px;
+    border-radius: 18px;
+    padding: 2em;
+    width: 70% !important;
+    box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
+    background-color: white;
 }
 
 #aboutMe {
+    margin: 10px;
+    text-align: left;
     font-family: 'Times New Roman', Times, serif;
-    padding-top: 20px;
-    padding-right: 10px;
-    border: 2px solid black;
-    border-radius: 15px;
-    margin-right: 300px;
-    margin-top: 10px;
+    border-radius: 18px;
+    padding: 2em;
+    width: 70% !important;
+    box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
+    background-color: white;
 }
 
 #buttons {
