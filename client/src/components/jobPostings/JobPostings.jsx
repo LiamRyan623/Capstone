@@ -13,7 +13,9 @@ import {
 export default function JobPostings(props) {
   const [jobs, setJobs] = useState([]);
   const [currentIndexA, setCurrentIndexA] = useState(0);
-  const [currentIndexB, setCurrentIndexB] = useState(0);
+  const [currentIndexB, setCurrentIndexB] = useState(15);
+  const [likedJobs, setLikedJobs] = useState([]);
+  const [dislikedJobs, setDislikedJobs] = useState([]);
   
   function getRandomIndices(arr) {
     // nested fn to create a random num
@@ -48,17 +50,6 @@ export default function JobPostings(props) {
       }
     console.log(`Post if else log: numA is ${numA}, numB is ${numB}`)
     
-    // Generate the first random index
-    //let numA = makeNum()
-    // Generate the second random index
-    //let numB = Math.floor(Math.random() * (arr.length - 1));
-  
-    // numB and num A !==
-    // each num !< 0
-    // each num !> arr.length - 1
-    
-      // setCurrentIndexA(numA)
-      // setCurrentIndexB(numB)
     
   }
 
@@ -73,8 +64,15 @@ export default function JobPostings(props) {
     }
   }
 
-  const getNewB = () => {
+  const getNewB = (arr) => {
+    let newB =  Math.floor(Math.random() * (arr.length - 1));
 
+    if (newB != currentIndexA) {
+      console.log(newB, currentIndexA)
+      return setCurrentIndexB(newB);
+    } else {
+      console.log("same number")
+    }
   }
 
   const fetchJobs = async () => {
