@@ -1,0 +1,33 @@
+#background {
+  min-height: 100vh;
+  background-color: #13334c;
+}
+
+#mainCont {
+  display: flex;
+  padding: 2em;
+  width: 32vw;
+}
+
+#jobCard {
+  margin: 0.5em;
+  width: 100%;
+  box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
+  border: 2px solid black;
+}
+
+.job-card-content {
+  padding: 1em;
+  height: 100%;
+}
+
+.card-text {
+  font-size: 14px; /* Adjust the font size as per your preference */
+  line-height: 1.2; /* Adjust the line height as per your preference */
+  overflow: scroll;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6; /* Increase or decrease the number of lines to fit within the card */
+  -webkit-box-orient: vertical;
+  margin-bottom: 1em; /* Add some margin at the bottom for spacing */
+}
