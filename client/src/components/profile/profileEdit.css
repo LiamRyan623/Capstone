@@ -1,7 +1,9 @@
+
 .mainContainer {
     background-color: #13334c;
     min-height: 100vh;
 }
+
 #profileEditData {
     margin-top: 50px;
     margin-left: 15%;

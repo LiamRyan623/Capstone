@@ -128,7 +128,9 @@ export default function ProfileEdit(props) {
 
   return (
     <>
+
     <div className="mainContainer">
+
       <h1 style={{ color: "#fd5f00", textAlign: "center", textDecoration: "underline" }}>
         Edit Profile
       </h1>
