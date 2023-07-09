@@ -6,7 +6,7 @@ import Headline from "./Headline"
 import { Col, Container, Row, Button } from "reactstrap";
 import {  useNavigate } from "react-router-dom";
 import "./profile.css"
-//import ProfileEdit from "./ProfileEdit";
+
 
 export default function Profile(props) {
   //const { id } = useParams();
@@ -119,6 +119,10 @@ export default function Profile(props) {
 //   {console.log(Rooms)}
   return (
     <div id="data">
+      <div id="editButtons">
+                <Button style={{backgroundColor: "#fd5f00"}} onClick={() => navigate("/jobPostings")}>Job Postings</Button>
+                <Button style={{backgroundColor: "#fd5f00"}} onClick={() => navigate("/profileEdit")}>Edit Profile</Button>
+      </div>
       <img
           style={{
             margin: "1.5em",
@@ -132,6 +136,7 @@ export default function Profile(props) {
       <Container>
         <div>
           <Row>
+              
               <div id="content">
                 <div id="name">
                   <Col md="8"><Name firstName={user.firstName} token={props.token}/></Col>
@@ -144,10 +149,7 @@ export default function Profile(props) {
                   <Col md="8"><AboutMe aboutMe={user.aboutMe} token={props.token}/></Col>
                 </div>
               </div>
-              <div id="buttons">
-                <Button onClick={() => navigate("/jobPostings")}>Job Postings</Button>
-                <Button onClick={() => navigate("/profileEdit")}>Edit Profile</Button>
-              </div>
+              
           </Row>
         </div>
       </Container>
