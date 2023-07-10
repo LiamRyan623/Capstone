@@ -1,51 +1,69 @@
-body {
-    background-color: #13334c;
-    min-height: 100vh;
-}
 
 #data {
-    align-content: center !important; 
     background-color: #13334c;
-    min-height: 100vh;
+    width: 100% !important;
+    margin: 0;
+}
+
+
+/* .editButton {
+    background-color: "#fd5f00" !important;
+    width: 30% !important;
+} */
+
+.content{
+    margin: 10px;
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: left;
+    border-radius: 18px;
+    /* width: 95% !important;
+    height: 95%; */
+    box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
+    background-color: white;
+}
+
+#profilePhoto {
+    width: 20vw;
+    height: 35vh;
+    border-radius: 18px;
+  padding: 2em;
+/*   width: 30% !important; */
+  box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
+  background-color: white;
 }
 
 #name {
-    margin-top: 20px;
+    padding-left: 1em;
+    /* margin-top: 2em; */
     text-align: left !important;
     font-family: 'Times New Roman', Times, serif;
-    border-radius: 18px;
-    padding: 2em;
-    width: 25% !important;
-    box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
-    background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
-    background-color: white;
+    
 }
 
 #headline {
-    margin-top: 20px;
-    text-align: left; 
+    padding-left: 1em;
+    text-align: left !important; 
     font-family: 'Times New Roman', Times, serif;
-    border-radius: 18px;
-    padding: 2em;
-    width: 70% !important;
-    box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
-    background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
-    background-color: white;
+    
 }
 
 #aboutMe {
-    margin-top: 20px;
+    padding-left: 1em;
     text-align: left;
     font-family: 'Times New Roman', Times, serif;
-    border-radius: 18px;
-    padding: 2em;
-    width: 70% !important;
-    box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
-    background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
-    background-color: white;
+    
+}
+/* Text class */
+.paraText {
+    font-size: 1.4em;
 }
 
 #editButtons {
+    width: 50%;
+    margin-left: 25%;
     display: grid;
     grid-template-columns: 6fr 6fr;
     grid-column-gap: 20px;
