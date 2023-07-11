@@ -147,8 +147,9 @@ export default function JobPostings(props) {
       setAvailableJobs((prevAvailableJobs) =>
         prevAvailableJobs.filter((job) => job._id !== jobId)
       );
-      setCurrentJobA(getRandomJob());
       setImage1(newImgString());
+      setCurrentJobA(getRandomJob());
+
       //console.log(currentJobA);
     }
 
@@ -158,9 +159,9 @@ export default function JobPostings(props) {
         prevAvailableJobs.filter((job) => job._id !== jobId)
       );
       localStorage.setItem("savedJobs", JSON.stringify(likedJobs));
-
-      setCurrentJobB(getRandomJob());
       setImage2(newImgString());
+      setCurrentJobB(getRandomJob());
+
       //console.log(currentJobB);
     }
   }
@@ -173,8 +174,8 @@ export default function JobPostings(props) {
       setAvailableJobs((prevAvailableJobs) =>
         prevAvailableJobs.filter((job) => job._id !== jobId)
       );
-      setCurrentJobA(getRandomJob());
       setImage1(newImgString());
+      setCurrentJobA(getRandomJob());
     }
 
     if (currentJobB._id === jobId) {
@@ -182,8 +183,8 @@ export default function JobPostings(props) {
       setAvailableJobs((prevAvailableJobs) =>
         prevAvailableJobs.filter((job) => job._id !== jobId)
       );
-      setCurrentJobB(getRandomJob());
       setImage2(newImgString());
+      setCurrentJobB(getRandomJob());
     }
   }
 
@@ -223,7 +224,13 @@ export default function JobPostings(props) {
             <>
               {currentJobA && (
                 <Card id="jobCard" key={currentJobA._id}>
-                  <CardImg alt="Card image cap" src={image1} top width="100%" />
+                  <CardImg
+                    className="img"
+                    alt="Card image cap"
+                    src={image1}
+                    top
+                    width="100%"
+                  />
                   <CardBody className="job-card-content">
                     <CardTitle tag="h5">{currentJobA.job}</CardTitle>
                     <CardSubtitle className="mb-2 text-muted" tag="h6">
@@ -233,13 +240,13 @@ export default function JobPostings(props) {
                       {currentJobA.description}
                     </CardText>
                     <Button
-                      className="btn"
+                      className="dislikeBtn"
                       onClick={() => handleDislike(currentJobA._id)}
                     >
                       No thanks!
                     </Button>
                     <Button
-                      className="btn"
+                      className="likeBtn"
                       onClick={() => handleLike(currentJobA._id)}
                     >
                       Hire me!
@@ -249,7 +256,13 @@ export default function JobPostings(props) {
               )}
               {currentJobB && (
                 <Card id="jobCard" key={currentJobB._id}>
-                  <CardImg alt="Card image cap" src={image2} top width="100%" />
+                  <CardImg
+                    className="img"
+                    alt="Card image cap"
+                    src={image2}
+                    top
+                    width="100%"
+                  />
                   <CardBody className="job-card-content">
                     <CardTitle tag="h5">{currentJobB.job}</CardTitle>
                     <CardSubtitle className="mb-2 text-muted" tag="h6">
@@ -259,13 +272,13 @@ export default function JobPostings(props) {
                       {currentJobB.description}
                     </CardText>
                     <Button
-                      className="btn"
+                      className="dislikeBtn"
                       onClick={() => handleDislike(currentJobB._id)}
                     >
                       No thanks!
                     </Button>
                     <Button
-                      className="btn"
+                      className="likeBtn"
                       onClick={() => handleLike(currentJobB._id)}
                     >
                       Hire me!
