@@ -118,7 +118,9 @@ export default function Profile(props) {
   }, [props.token])
 //   {console.log(Rooms)}
   return (
-    <div id="data">
+    <>
+      <div id="data">
+      
       <div id="editButtons">
                 <Button style={{backgroundColor: "#fd5f00"}} onClick={() => navigate("/jobPostings")}>Job Postings</Button>
                 <Button style={{backgroundColor: "#fd5f00"}} onClick={() => navigate("/profileEdit")}>Edit Profile</Button>
@@ -132,29 +134,50 @@ export default function Profile(props) {
           src="https://i.ibb.co/7NpG7dv/Career-Clash.png"
           alt="Logo"
         ></img>
-    <>
-      <Container>
-        <div>
-          <Row>
-              
-              <div id="content">
-                <div id="name">
-                  <Col md="8"><Name firstName={user.firstName} token={props.token}/></Col>
-                  <Col md="8"><Name lastName={user.lastName} token={props.token}/></Col>
+    <Container>
+        <Row md="auto">
+          <Col>
+            <div className="content">
+              <img id="profilePhoto" src="https://images.unsplash.com/photo-1642978277577-83c6ceac4820?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=928&q=80" alt="" />
+            </div>
+          </Col>
+          
+        </Row>
+        <Col md="auto">
+          <Col md="5">
+            <div className="content">
+            <div id="name">
+                  <Col>
+                    <Name firstName={user.firstName} lastName={user.lastName} token={props.token}/>
+                  </Col>
+                  
                 </div>
+            </div>
+          </Col>
+          <Col md="5">
+              <div className="content">
                 <div id="headline">   
-                  <Col  md="8"><Headline headline={user.headline} token={props.token}/></Col>
+                  <Col>
+                    <Headline headline={user.headline} token={props.token}/>
+                  </Col>
                 </div> 
-                <div id="aboutMe">
-                  <Col md="8"><AboutMe aboutMe={user.aboutMe} token={props.token}/></Col>
+              </div>  
+          </Col>
+          <Col md="auto">
+            <div className="content">
+              <div id="aboutMe">
+                  <Col>
+                    <AboutMe aboutMe={user.aboutMe} token={props.token}/>
+                  </Col>
                 </div>
-              </div>
-              
-          </Row>
-        </div>
+            </div>
+            <Row></Row>
+          </Col>
+          
+        </Col>
       </Container>
+      </div>
     </>
-    </div>
   );
 }
 

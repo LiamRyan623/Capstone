@@ -5,15 +5,16 @@
 
 #mainCont {
   display: flex;
-  justify-content: center;
-  width: 65vw;
+  justify-content: space-around !important;
+  width: 70vw !important;
 }
 
 #jobCard {
-  margin: 0.5em;
+  margin: 2em !important;
   width: 100%;
   box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
   border: 2px solid black;
+  border-radius: 12px;
 }
 
 .job-card-content {
@@ -35,13 +36,17 @@
 .job-list {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
-  gap: 12px;
 }
 
 .job-item {
   background-color: #f2f2f2;
   padding: 20px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  margin-left: 10vw;
+  width: 80vw;
   border-radius: 8px;
 }
 
@@ -65,5 +70,30 @@
   color: white;
   margin-top: 1.5em;
   padding-top: 0.5em;
-  border-top: solid white 0.5px;
+}
+
+.likeBtn {
+  margin: 0.25em;
+  background-color: #13334c !important;
+  border: 2px solid #13334c !important;
+}
+
+.likeBtn:hover {
+  margin: 0.25em;
+  background-color: #b0e0e6 !important;
+  border: 2px solid #13334c !important;
+  color: #13334c !important;
+}
+
+.dislikeBtn {
+  margin: 0.25em;
+  background-color: #fd5f00 !important;
+  border: 2px solid #fd5f00 !important;
+}
+
+.dislikeBtn:hover {
+  margin: 0.25em;
+  background-color: #ffa07a !important;
+  border: 2px solid #fd5f00 !important;
+  color: #fd5f00 !important;
 }
