@@ -1,10 +1,12 @@
+import "./profile.css";
+
 export default function AboutMe({aboutMe}) {
     // let date = new Date().getFullYear();
   
     return (
     <>
 
-            <h1>{aboutMe}</h1>
+            <p className="paraText">{aboutMe}</p>
         
     </>
   )
