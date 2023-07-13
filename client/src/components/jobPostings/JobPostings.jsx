@@ -11,22 +11,35 @@ import {
   CardImg,
   Button,
 } from "reactstrap";
+import JobCard from "./JobCards";
 
 export default function JobPostings(props) {
   const [likedJobs, setLikedJobs] = useState([]);
   const [dislikedJobs, setDislikedJobs] = useState([]);
   const [availableJobs, setAvailableJobs] = useState([]);
-  const [currentJobs, setCurrentJobs] = useState([]);
+  const [currentJobs, setCurrentJobs] = useState({});
+  const [currentJobA, setCurrentJobA] = useState({});
+  const [currentJobB, setCurrentJobB] = useState({});
+  const [image1, setImage1] = useState(
+    "https://picsum.photos/318/180?random=1"
+  );
+  const [image2, setImage2] = useState(
+    "https://picsum.photos/318/180?random=2"
+  );
 
   useEffect(() => {
     if (props.token) {
       fetchJobs();
+
+      const savedJobs = JSON.parse(localStorage.getItem("savedJobs")) || [];
+      setLikedJobs(savedJobs);
     }
   }, [props.token]);
 
-  useEffect(() => {
-    setCurrentJobs([getRandomJob(), getRandomJob()]);
-  }, [availableJobs]);
+  // useEffect(() => {
+  //   setCurrentJobA(currentJobs.jobA);
+  //   setCurrentJobB(currentJobs.jobB);
+  // }, []);
 
   const fetchJobs = async () => {
     const url = "http://localhost:4000/job/";
@@ -42,7 +55,8 @@ export default function JobPostings(props) {
       const data = await res.json();
 
       setAvailableJobs(data.getAllJobs);
-      console.log(availableJobs);
+      setCurrentJobA(data.getAllJobs[0]);
+      setCurrentJobB(data.getAllJobs[1]);
     } catch (err) {
       console.log(err);
     }
@@ -53,14 +67,21 @@ export default function JobPostings(props) {
       (job) =>
         !likedJobs.includes(job._id) &&
         !dislikedJobs.includes(job._id) &&
-        !currentJobs.find(
-          (currentJob) => currentJob && currentJob._id === job._id
-        )
+        (currentJobA ? currentJobA._id !== job._id : true) &&
+        (currentJobB ? currentJobB._id !== job._id : true)
     );
+
+    // console.log(filteredJobs);
+    // console.log(currentJobs);
 
     if (filteredJobs.length === 0) {
       // No more available jobs
       return null;
+    }
+
+    if (filteredJobs.length === 1) {
+      // Only one job left
+      return filteredJobs[0];
     }
 
     const randomIndex = Math.floor(Math.random() * filteredJobs.length);
@@ -68,6 +89,43 @@ export default function JobPostings(props) {
 
     return randomJob;
   }
+
+  useEffect(() => {
+    setCurrentJobs((prevCurrentJobs) => ({
+      ...prevCurrentJobs,
+      jobA: currentJobA,
+      jobB: currentJobB,
+    }));
+
+    // setCurrentJobs((prevCurrentJobs) => ({
+    //   ...prevCurrentJobs,
+
+    // }));
+
+    console.log(currentJobs);
+    // console.log("Job A", currentJobA);
+  }, [availableJobs, likedJobs, dislikedJobs]);
+
+  // useEffect(() => {
+  //   setCurrentJobs((prevCurrentJobs) => ({
+  //     ...prevCurrentJobs,
+  //     jobA: getRandomJob(),
+  //   }));
+  //   // setCurrentJobA(currentJobs.jobA);
+  // }, [availableJobs, likedJobs, dislikedJobs]);
+
+  // useEffect(() => {
+  //   setCurrentJobs((prevCurrentJobs) => ({
+  //     ...prevCurrentJobs,
+  //     jobB: getRandomJob(),
+  //   }));
+  //   // setCurrentJobB(currentJobs.jobB);
+  // }, [availableJobs, likedJobs, dislikedJobs]);
+
+  // useEffect(() => {
+  //   setCurrentJobA(currentJobs.jobA);
+  //   setCurrentJobB(currentJobs.jobB);
+  // }, [availableJobs]);
 
   useEffect(() => {
     const job1 = getRandomJob();
@@ -78,39 +136,64 @@ export default function JobPostings(props) {
       job2 = getRandomJob();
     }
 
-    setCurrentJobs([job1, job2]);
+    setCurrentJobs({ jobA: job1, jobB: job2 });
   }, [availableJobs, likedJobs, dislikedJobs]);
 
   function handleLike(jobId) {
-    const likedJob = currentJobs.find((job) => job._id === jobId);
-    setLikedJobs((prevLikedJobs) => [...prevLikedJobs, likedJob]);
-    setAvailableJobs((prevAvailableJobs) =>
-      prevAvailableJobs.filter((job) => job._id !== jobId)
-    );
+    // const { jobA, jobB } = currentJobs;
 
-    if (availableJobs.length === 1) {
-      setCurrentJobs([getRandomJob()]);
-    } else {
-      setCurrentJobs((prevCurrentJobs) =>
-        prevCurrentJobs.map((job) => (job._id === jobId ? getRandomJob() : job))
+    if (currentJobA._id === jobId) {
+      setLikedJobs((prevLikedJobs) => [...prevLikedJobs, currentJobA]);
+      setAvailableJobs((prevAvailableJobs) =>
+        prevAvailableJobs.filter((job) => job._id !== jobId)
       );
+      setImage1(newImgString());
+      setCurrentJobA(getRandomJob());
+
+      //console.log(currentJobA);
+    }
+
+    if (currentJobB._id === jobId) {
+      setLikedJobs((prevLikedJobs) => [...prevLikedJobs, currentJobB]);
+      setAvailableJobs((prevAvailableJobs) =>
+        prevAvailableJobs.filter((job) => job._id !== jobId)
+      );
+      localStorage.setItem("savedJobs", JSON.stringify(likedJobs));
+      setImage2(newImgString());
+      setCurrentJobB(getRandomJob());
+
+      //console.log(currentJobB);
     }
   }
 
   function handleDislike(jobId) {
-    const dislikedJob = currentJobs.find((job) => job._id === jobId);
-    setDislikedJobs((prevDislikedJobs) => [...prevDislikedJobs, dislikedJob]);
-    setAvailableJobs((prevAvailableJobs) =>
-      prevAvailableJobs.filter((job) => job._id !== jobId)
-    );
+    // const { jobA, jobB } = currentJobs;
 
-    if (availableJobs.length === 1) {
-      setCurrentJobs([getRandomJob()]);
-    } else {
-      setCurrentJobs((prevCurrentJobs) =>
-        prevCurrentJobs.map((job) => (job._id === jobId ? getRandomJob() : job))
+    if (currentJobA._id === jobId) {
+      setDislikedJobs((prevDislikedJobs) => [...prevDislikedJobs, currentJobA]);
+      setAvailableJobs((prevAvailableJobs) =>
+        prevAvailableJobs.filter((job) => job._id !== jobId)
       );
+      setImage1(newImgString());
+      setCurrentJobA(getRandomJob());
     }
+
+    if (currentJobB._id === jobId) {
+      setDislikedJobs((prevDislikedJobs) => [...prevDislikedJobs, currentJobB]);
+      setAvailableJobs((prevAvailableJobs) =>
+        prevAvailableJobs.filter((job) => job._id !== jobId)
+      );
+      setImage2(newImgString());
+      setCurrentJobB(getRandomJob());
+    }
+  }
+
+  function newImgString() {
+    const num = Math.floor(Math.random() * 60);
+
+    let futureSrc = `https://picsum.photos/318/180?random=${num}`;
+
+    return futureSrc;
   }
 
   useEffect(() => {
@@ -120,57 +203,97 @@ export default function JobPostings(props) {
   return (
     <>
       <div id="background">
-        <img
-          id="logo"
-          style={{
-            margin: "1em",
-            height: "70px",
-            width: "100px",
-          }}
-          src="https://i.ibb.co/7NpG7dv/Career-Clash.png"
-          alt="Logo"
-        ></img>
+        <a href="/profile">
+          <img
+            id="logo"
+            style={{
+              margin: "1em",
+              height: "70px",
+              width: "100px",
+            }}
+            src="https://i.ibb.co/7NpG7dv/Career-Clash.png"
+            alt="Logo"
+          />
+        </a>
         <Container id="mainCont">
           {!availableJobs || availableJobs.length === 0 ? (
             <div id="noJobsMessage">
               <h2>Currently searching for new jobs...</h2>
             </div>
           ) : (
-            currentJobs.map(
-              (job) =>
-                job && ( // Add a null check for the job
-                  <Card id="jobCard" key={job._id}>
-                    <CardImg
-                      alt="Card image cap"
-                      src="https://picsum.photos/318/180"
-                      top
-                      width="100%"
-                    />
-                    <CardBody className="job-card-content">
-                      <CardTitle tag="h5">{job.job}</CardTitle>
-                      <CardSubtitle className="mb-2 text-muted" tag="h6">
-                        {job.company}
-                      </CardSubtitle>
-                      <CardText className="card-text">
-                        {job.description}
-                      </CardText>
-                      <Button onClick={() => handleDislike(job._id)}>
-                        No thanks!
-                      </Button>
-                      <Button onClick={() => handleLike(job._id)}>
-                        Hire me!
-                      </Button>
-                    </CardBody>
-                  </Card>
-                )
-            )
+            <>
+              {currentJobA && (
+                <Card id="jobCard" key={currentJobA._id}>
+                  <CardImg
+                    className="img"
+                    alt="Card image cap"
+                    src={image1}
+                    top
+                    width="100%"
+                  />
+                  <CardBody className="job-card-content">
+                    <CardTitle tag="h5">{currentJobA.job}</CardTitle>
+                    <CardSubtitle className="mb-2 text-muted" tag="h6">
+                      {currentJobA.company}
+                    </CardSubtitle>
+                    <CardText className="card-text">
+                      {currentJobA.description}
+                    </CardText>
+                    <Button
+                      className="dislikeBtn"
+                      onClick={() => handleDislike(currentJobA._id)}
+                    >
+                      No thanks!
+                    </Button>
+                    <Button
+                      className="likeBtn"
+                      onClick={() => handleLike(currentJobA._id)}
+                    >
+                      Hire me!
+                    </Button>
+                  </CardBody>
+                </Card>
+              )}
+              {currentJobB && (
+                <Card id="jobCard" key={currentJobB._id}>
+                  <CardImg
+                    className="img"
+                    alt="Card image cap"
+                    src={image2}
+                    top
+                    width="100%"
+                  />
+                  <CardBody className="job-card-content">
+                    <CardTitle tag="h5">{currentJobB.job}</CardTitle>
+                    <CardSubtitle className="mb-2 text-muted" tag="h6">
+                      {currentJobB.company}
+                    </CardSubtitle>
+                    <CardText className="card-text">
+                      {currentJobB.description}
+                    </CardText>
+                    <Button
+                      className="dislikeBtn"
+                      onClick={() => handleDislike(currentJobB._id)}
+                    >
+                      No thanks!
+                    </Button>
+                    <Button
+                      className="likeBtn"
+                      onClick={() => handleLike(currentJobB._id)}
+                    >
+                      Hire me!
+                    </Button>
+                  </CardBody>
+                </Card>
+              )}
+            </>
           )}
         </Container>
         <div className="job-list">
-          <h3 className="listTitle">My Jobs</h3>
+          <h2 className="listTitle">My Jobs</h2>
           {likedJobs.map((job) => (
             <div className="job-item" key={job._id}>
-              <h4 className="job-title">{job.job}</h4>
+              <h3 className="job-title">{job.job}</h3>
               <p className="company">{job.company}</p>
               <p className="description">{job.description}</p>
             </div>
