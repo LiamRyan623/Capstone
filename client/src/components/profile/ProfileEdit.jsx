@@ -10,6 +10,8 @@ import {
   Label,
   Button,
 } from "reactstrap";
+import "./profileEdit.css";
+
 
 export default function ProfileEdit(props) {
   const [firstName, setFirstName] = useState("");
@@ -96,10 +98,10 @@ export default function ProfileEdit(props) {
     // bodyObj is the req.body that the server needs for PATCH
     // DB obj key on the left : on the right side have the current updated state; firstName: firstName
     let bodyObj = JSON.stringify({
-     firstName: firstName,
-     lastName: lastName,
-     aboutMe: aboutMe,
-     headline: headline,
+      firstName: firstName,
+      lastName: lastName,
+      aboutMe: aboutMe,
+      headline: headline,
     });
 
     // Sending our token auth through headers, our bodyObj, and the method PATCH for the endpoint
@@ -126,10 +128,14 @@ export default function ProfileEdit(props) {
 
   return (
     <>
-      <h1 style={{ textAlign: "center", textDecoration: "underline" }}>
+
+    <div className="mainContainer">
+
+      <h1 style={{ color: "#fd5f00", textAlign: "center", textDecoration: "underline" }}>
         Edit Profile
       </h1>
       <Container>
+        <div id="profileEditData">
         <Row>
           <Col md="8">
             <Form onSubmit={handleSubmit}>
@@ -156,7 +162,7 @@ export default function ProfileEdit(props) {
                   onChange={(e) => setHeadline(e.target.value)}
                   autoComplete="off"
                 />
-                 </FormGroup>
+                </FormGroup>
                 <FormGroup>
                 <Label>About Me</Label>
                 <Input
@@ -169,7 +175,9 @@ export default function ProfileEdit(props) {
             </Form>
           </Col>
         </Row>
+        </div>
       </Container>
+      </div>
     </>
   );
 }

@@ -1,0 +1,18 @@
+
+.mainContainer {
+    background-color: #13334c;
+    min-height: 100vh;
+}
+
+#profileEditData {
+    margin-top: 50px;
+    margin-left: 15%;
+    text-align: left !important;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 18px;
+    padding: 2em;
+    width: 70% !important;
+    box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
+    background-color: white;
+}

@@ -1,0 +1,99 @@
+#background {
+  min-height: 100vh;
+  background-color: #13334c;
+}
+
+#mainCont {
+  display: flex;
+  justify-content: space-around !important;
+  width: 70vw !important;
+}
+
+#jobCard {
+  margin: 2em !important;
+  width: 100%;
+  box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
+  border: 2px solid black;
+  border-radius: 12px;
+}
+
+.job-card-content {
+  padding: 1em;
+  height: 100%;
+}
+
+.card-text {
+  font-size: 14px; /* Adjust the font size as per your preference */
+  line-height: 1.2; /* Adjust the line height as per your preference */
+  overflow: scroll;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6; /* Increase or decrease the number of lines to fit within the card */
+  -webkit-box-orient: vertical;
+  margin-bottom: 1em; /* Add some margin at the bottom for spacing */
+}
+
+.job-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.job-item {
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  margin-left: 10vw;
+  width: 80vw;
+  border-radius: 8px;
+}
+
+.job-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.company {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.listTitle {
+  color: white;
+  margin-top: 1.5em;
+  padding-top: 0.5em;
+}
+
+.likeBtn {
+  margin: 0.25em;
+  background-color: #13334c !important;
+  border: 2px solid #13334c !important;
+}
+
+.likeBtn:hover {
+  margin: 0.25em;
+  background-color: #b0e0e6 !important;
+  border: 2px solid #13334c !important;
+  color: #13334c !important;
+}
+
+.dislikeBtn {
+  margin: 0.25em;
+  background-color: #fd5f00 !important;
+  border: 2px solid #fd5f00 !important;
+}
+
+.dislikeBtn:hover {
+  margin: 0.25em;
+  background-color: #ffa07a !important;
+  border: 2px solid #fd5f00 !important;
+  color: #fd5f00 !important;
+}

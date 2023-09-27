@@ -1,9 +1,73 @@
-body {
-    background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
-    margin: 0;
-    padding: 0;
-}
 
 #data {
+    background-color: #13334c;
+    width: 100% !important;
+    margin: 0;
+}
+
+
+/* .editButton {
+    background-color: "#fd5f00" !important;
+    width: 30% !important;
+} */
+
+.content{
+    margin: 10px;
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: left;
+    border-radius: 18px;
+    /* width: 95% !important;
+    height: 95%; */
+    box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
+    background-color: white;
+}
+
+#profilePhoto {
+    width: 20vw;
+    height: 35vh;
+    border-radius: 18px;
+  padding: 2em;
+/*   width: 30% !important; */
+  box-shadow: 3px 3px 3px 3px rgb(0, 0, 0);
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png ");
+  background-color: white;
+}
+
+#name {
+    padding-left: 1em;
+    /* margin-top: 2em; */
+    text-align: left !important;
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+
+#headline {
+    padding-left: 1em;
+    text-align: left !important; 
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+
+#aboutMe {
+    padding-left: 1em;
     text-align: left;
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+/* Text class */
+.paraText {
+    font-size: 1.4em;
+}
+
+#editButtons {
+    width: 50%;
+    margin-left: 25%;
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    justify-items: stretch;
+    align-items: stretch;
 }
